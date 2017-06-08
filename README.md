@@ -73,7 +73,7 @@ The project must solve the problem that our team has been tasked with and must m
 		* Chose the type of scene they would like to use, in the VR Headset UI and/or in the Desktop UI.
 		* Once a scene is chosen, data will be written to the database based on the movement of the VR Headset and its peripheral device.
 		* For a user to end the scene, there should be a button dedicated on the peripheral device that the user may press (so the transmission of data will be cutoff) or a button will be implemented within the UI that has the same effect.
-		* In order to completely end the session, the user must logoff.
+	* In order to completely end the session, the admin/user must logoff.
 
 
 ## Technical Overview
