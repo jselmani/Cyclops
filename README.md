@@ -77,8 +77,50 @@ The project must solve the problem that our team has been tasked with and must m
 
 
 ## Technical Overview
+#### The Oculus Rift
+* Components of the Rift:
+	* OLED panel for each eye – resolution of 1080×1200 with refresh rate of 90 Hz each panel.
+	* Integrated 3D Headphones.
+	* Accelerometer
+	* Gyroscope
+	* Constellation – the positional tracking system
+		* Tracks the position of the user's head as well as the position of the peripheral device (Touch Controller)
+	* Oculus Touch (Touch Controllers) – pair of handheld motion controllers
+Software Packaged with the Rift:
+	* Oculus Home – base software of the rift which starts VR applications
+	* Oculus PC SDK - written in C++
+	* Oculus Runtime/Drivers - the runtime and drivers must be installed in order for the rift to function.
 
-To be completed in Draft 2
+
+#### Desktop PC
+* Minimum Requirements:
+	* Graphics Card – NVIDIA GTX 960 / AMD Radeon R9 290 or greater
+	* CPU – Intel i3-6100 / AMD Ryzen 3 1200, FX4350 or greater
+	* RAM – 8GB or greater
+	* HDMI – version 1.3
+	* USB 3.0 – 1 Port
+	* USB 2.0 – 2 Ports
+	* Operating System – Windows 8.1 or newer
+
+
+#### Database
+* MongoDB using NoSQL
+
+#### Unity Game Engine
+* General Documentation:
+	* Unity is a cross-platform game engine developed by UnityTechnologies. 
+	* Unity is primarily used to develop video games and simulations. 
+	* Most of the code written in unity is in C#
+* System Requirements:
+	* Graphics Card – DX9 or DX11 enabled graphics
+	* Operating System – 
+		* Windows 7 or newer
+		* Mac OS X 10.8 or newer
+
+#### Additional Software
+* The Oculus Rift data will be retreived by a program written in C++.
+	* This program well then write the data to the database.
+
 
 ## Use Cases
 
