@@ -86,7 +86,7 @@ The project must solve the problem that our team has been tasked with and must m
 	* Constellation – the positional tracking system
 		* Tracks the position of the user's head as well as the position of the peripheral device (Touch Controller)
 	* Oculus Touch (Touch Controllers) – pair of handheld motion controllers
-Software Packaged with the Rift:
+* Software Packaged with the Rift:
 	* Oculus Home – base software of the rift which starts VR applications
 	* Oculus PC SDK - written in C++
 	* Oculus Runtime/Drivers - the runtime and drivers must be installed in order for the rift to function.
