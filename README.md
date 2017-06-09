@@ -15,12 +15,12 @@ Dr. Elliott Coleshill is a Professor and Industry Relations Coordinator at Senec
 
 ### Business Statement
 
-Currently, pilots require a certain number of inflight hours before they are able to receive their piloting license. This is a very costly procedure since fuel is very expensive and could be dangerous since an untrained pilot would be in control of the aircraft. Dr. Coleshill has requested our team to learn the capabilities of a Virtual Reality Headset, the Oculus Rift, and create a project that allows him to learn and understand the exact capabilities of the Oculus Rift with ease. He is interested in administering a safe environment for both Professors and Students, with an end goal of providing the same experience to the pilot "on the ground" that they would receive in the cockpit "in the air". This safe environment would decrease the dangers and costs that are involved with training a new pilot.
+Currently, pilots require a certain number of inflight hours before they are able to receive their piloting license. This is a very costly procedure since fuel is very expensive and could be dangerous since an untrained pilot would be in control of the aircraft. Dr. Coleshill has requested our team to learn the capabilities of a Virtual Reality Headset, the Oculus Rift, and create a project that allows him to learn and understand the exact capabilities of the Oculus Rift with ease. He is interested in administering a safe environment for both Professors and Students, with an end goal of providing the same experience to the pilot "on the ground" that they would receive in the cockpit "in the air". This safe environment would decrease the dangers and costs that are involved with training a new pilot.  This environment will be rendered as a Scene (what is displayed to the user via the Oculus Rift) to engage the pilot in a cockpit setting, but in a cost-effective environment.
 Virtual reality technology is relatively new and our group has never worked with the technology before.  Therefore, we will be maintaining a relatively lower level of complexity in order to ensure project completion.  Our task is to generate a series of components to meet the requirements of the research project.  These components consist of customized scenes (the VR and desktop environments) such as the user interface and the cockpit (preferably a Static Cockpit) which would be designed and implemented using Unity's Game Engine, a Database to store data (User, Sensor Data, Timestamp), and software that will extract accelerometer and gyroscope data from the VR Headset and its peripheral device.
 
 In order to aid Dr. Coleshill in his research, he requires technology that can process sensor information in real-time.  By doing so, he will be able to understand what and where the User is looking at, and how often.  With vast amounts of data being stored, it can be extracted for review where Dr. Coleshill can establish patterns in the flight and analyze the data accordingly on a per user basis.
 
-In order to have a seamless and proper collaboration, each group member will be tasked on working on a particular portion of the project to lighten the workload.  Should any group members become overwhelmed, it is agreed upon that aid will be provided from group members and our client as well.  Our project has several requirements, and are as follows.
+To cut down on development time, each group member will be tasked on working on a particular portion of the project to lighten the workload.  Should any group members become overwhelmed, it is agreed upon that aid will be provided from group members and our client as well.  Our project has several requirements, and are as follows.
 
 ### Overall System Requirements
 The project must solve the problem that our team has been tasked with and must meet certain requirements in order to be deemed successful.
@@ -38,24 +38,25 @@ The project must solve the problem that our team has been tasked with and must m
 * When a User attempts to log in, and fails, the System must let the User know why they cannot begin their session.
 
 #### The Database Requirements
-* A Database will be built in order to store data that is being read from the VR Headset and its peripheral device. Data from the database will also be retrieved for analysis.
+* A Database will be designed and built in order to store and retrieve data, following the rules below:
 	* The user passwords will be hashed,
 	* The data will only be accessible by an Admin.
 	* The Admin login credentials will be basic and unchangeable for simplicity.
 	* The database will consist of multiple tables – each table will hold the data of a scene that has been run by a user.
-* Data must be able to be written to the database in near real-time without fault.
-	* The language that will be used is yet to be determined.
+	* Data from the headset technology and its peripherals will be written to a .CSV file and stored into a file system
+		* The file will be referenced by the database for extraction, limiting database resources.
 
 #### The Scene Requirements
 * The scene will be generated by the Unity Game Engine.
 * In order to benefit Dr. Coleshill's research, it will be mocked to a cockpit of some kind, either a plane or a spaceship for added fun.
-* The scene will start as a static scene
-	* Initially, we plan on designing and working with a static scene. Depending on how fast the development progresses, we will implement a dynamic scene that incorporates movement within the scene.
+* Initially, we plan on designing and working with a static scene.
+	* Depending on how fast the development progresses, we will implement a dynamic scene that incorporates movement within the scene.
 
 #### The VR Sensor Extraction Requirements
 * The client has requested that the extracted data is in real-time. We have two methods to bring this to fruition.
-	* The data extracted will be time stamped in order for the admin to be able to analyze the data efficiently 
-	* When the data extraction is successful, if the project is near completion and time remains we may attempt to give a visual representation of the data within:
+	* The data extracted will be time stamped in order for the admin to be able to analyze the data efficiently
+	* The data will be written to a .CSV file where the data will be extracted at intervals between 50-200 milliseconds
+	* When the data extraction is successful, if the project is near completion and time permits we may attempt to give a visual representation of the data within:
 		* The Oculus Rift display and/or
 		* The desktop environment - this would only be accessible to an admin so they may analyze the data as it is being written.
 * The Oculus Rift Headset and its peripheral technology uses C++ in it's SDK.
@@ -66,8 +67,7 @@ The project must solve the problem that our team has been tasked with and must m
 	* A login section will be available on the Desktop UI
 * Depending on the type of login (regular user or admin), the UI will be slightly different.
 	* Once an admin is logged in they will be able to:
-		* Register a new user. 
-		* Based on the progress of the project and if time permits it, an admin will be able to view the data that is being sent to the database directly in the UI and export the data of that session to a file.
+		* Register a new user.
 	* A regular user would be able to:
 		* Chose the type of scene they would like to use, in the VR Headset UI and/or in the Desktop UI.
 		* Once a scene is chosen, data will be written to the database based on the movement of the VR Headset and its peripheral device.
@@ -76,6 +76,13 @@ The project must solve the problem that our team has been tasked with and must m
 
 
 ## Technical Overview
+
+This project consists of several components including the **front-end interfaces** for the students and administrator to access and perform the use cases, a **back-end (database)** component to store the extracted data from the Oculus Rift and its peripheral technology.  The **hosting** of the database will be local to the administrators machine.
+
+In this technical overview, we will list these components and their requirements, and discuss the technologies and their uses in order to run the program smoothly.
+
+### Components and Requirements
+
 #### The Oculus Rift
 * Components of the Rift:
 	* OLED panel for each eye – resolution of 1080×1200 with refresh rate of 90 Hz each panel.
@@ -91,7 +98,7 @@ The project must solve the problem that our team has been tasked with and must m
 	* Oculus Runtime/Drivers - the runtime and drivers must be installed in order for the rift to function.
 
 
-#### Desktop PC
+#### Desktop/Laptop PC
 * Minimum Requirements:
 	* Graphics Card – NVIDIA GTX 960 / AMD Radeon R9 290 or greater
 	* CPU – Intel i3-6100 / AMD Ryzen 3 1200, FX4350 or greater
@@ -103,25 +110,62 @@ The project must solve the problem that our team has been tasked with and must m
 
 
 #### Database
-* MongoDB using NoSQL
+* MongoDB (NoSQL)
+	* MongoDB must be installed on the local machine and will be configured using the Unity MongoDB driver for C#.
 
 #### Unity Game Engine
 * General Documentation:
-	* Unity is a cross-platform game engine developed by UnityTechnologies. 
-	* Unity is primarily used to develop video games and simulations. 
-	* Unity is primarily written in C#.
+	* Unity is a cross-platform game engine developed by UnityTechnologies.
+	* Unity is primarily used to develop video games and simulations.
+	* Unity scripting is written in C#.
 * System Requirements:
 	* Graphics Card – DX9 or DX11 enabled graphics
-	* Operating System – 
+	* Operating System –
 		* Windows 7 or newer
 		* Mac OS X 10.8 or newer
 
 #### Additional Software
-* The Oculus Rift data will be retreived by a program written in C++.
-	* This program well then write the data to the database.
+* The Oculus Rift data will be retrieved by a program written in C++.
+	* This program well then write the data to a .CSV file that will be stored in a file system and referenced by the database.
 
+### Technologies
+
+#### Front-End Interfaces
+
+This project uses the Unity game engine to render the scene that will consequently be built using the engine itself.  Unity is a popular content creation system that is used by many game developers worldwide but is now evolving to become a research and development tool for companies and organizations.  We are using Unity for the following reasons:
+
+* Integrated Oculus Rift support
+* Uses C# and has detailed documentation when needing help in designing software solutions
+* An asset store for requiring models that would take months to build (ie. cockpit)
+* Video resources explaining VR concepts and how to utilize them efficiently in the engine.
+* Running external processes (Rift sensory data extraction) on scene launch after the user has been validated by the back-end.
+
+In regards to Unity itself, it was the clear winner over other engines like Unreal or CryEngine.  Although Unreal utilizes C++ for the logic, Unreal requires much more code to perform the same tasks that would otherwise be written in C# when using Unity.  Consequently, Unity is much easier to learn and does not have a very steep learning curve in comparison, making it the wise choice for us as beginner virtual reality developers.
+
+Discussing virtual reality, we have mentioned several times that we will be using the Oculus Rift headset in comparison to other head-mounted displays like the HTC Vive.  We are using it for the following reasons:
+* Availability
+	* Seneca College of Applied Arts and Technology has several Oculus Rift headsets available for use and with the correct permissions from our client, we will be able to work with technology as frequently as we need to.
+* Cost
+	* One of our group members has already purchased an Oculus Rift as it is cheaper by approximately $300.00 CAD and performs the same functions as other head-mounted displays on the market.
+* Documentation
+	* The Oculus Rift is very well documented, with plenty of tutorials spanning the web explaining how to use it efficiently to perform certain tasks.
+
+For the reasons outlined above, our front-end will be using rather simple technologies to build a relatively complex solution for our client.
+
+#### Back-End/Database System
+
+The back-end of the project will consist of a C++ console application that will extract the sensor data from the Oculus Rift and its peripherals, as well as the MongoDB database that will be hosted locally in the administrators machine.  We have chosen to use C++ and MongoDB for the following reasons:
+* Oculus SDK
+  * The SDK is written in C++ and it is imperative that we use C++ in order to extract the sensory data.
+  * The C++ application is lightweight and can be started in the background once the user has logged in and has been validated in the Unity user interface.
+    * This will occur using the Process object in the Unity game engine.
+* Lightweight Database Engine
+  * The MongoDB database engine is lightweight and easy to integrate with C#, utilizing drivers to allow Unity integration.
+  * Data structuring uses JSON/BSON notation, making it a simpler alternative to MySQL or SQLite
+  * Querying in MongoDB uses simpler syntax with less restrictions, making it more error-free than the alternatives.
+
+  The beauty of the backend is that the front-end will utilize it when required using Unity's Process object.  By doing so, the C++ application executable will run when called upon by Unity, and the MongoDB database can be opened and operating when the Unity application is opened.
 
 ## Use Cases
 
 To be completed for final submissions
-
