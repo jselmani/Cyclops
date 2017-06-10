@@ -164,7 +164,7 @@ The back-end of the project will consist of a C++ console application that will 
   * Data structuring uses JSON/BSON notation, making it a simpler alternative to MySQL or SQLite
   * Querying in MongoDB uses simpler syntax with less restrictions, making it more error-free than the alternatives.
 
-  The beauty of the backend is that the front-end will utilize it when required using Unity's Process object.  By doing so, the C++ application executable will run when called upon by Unity, and the MongoDB database can be opened and operating when the Unity application is opened.
+  The beauty of the back-end is that the front-end will utilize it when required using Unity's Process object.  By doing so, the C++ application executable will run when called upon by Unity, and the MongoDB database can be opened and operating when the Unity application is opened.
 
 ## Use Cases
 
