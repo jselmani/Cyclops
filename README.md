@@ -168,4 +168,17 @@ The back-end of the project will consist of a C++ console application that will 
 
 ## Use Cases
 
-To be completed for final submissions
+### Administrator creates a new user account
+**Pre-requisites**: The administrator has already all the new user information and is currently logged in.</br>
+**Actor**: Administrator.</br>
+**Use Case Successful Post-conditions**: The administrator creates a new user account.
+
+1. The administrator clicks on **Create New User**.
+2. The system changes its view to display a form to the administrator for him/her to fill up with the new user information.
+3. The administrator enters the new user infomation and clicks on the **Create** button inside the form.
+	* The administrator can cancel this operation by clicking on the **Cancel** button inside the form, or by clicking the
+	**Back** button. By clicking on the **Cancel** button the form will be cleared, instead, by clicking on the **Back**
+	button the Administrator will be taken back to the main dashboard.
+4. The system checks the validity of the provided user information and creates a new user account if the form is valid.
+	* The system will display an error on the screen next to field where the error occured. The administrator can enter the field again.
+5. After successfully creating a new user, the system will display a pop-up message informing the administrator about the successful operation and the form will be cleared.
