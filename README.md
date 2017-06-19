@@ -185,7 +185,7 @@ The back-end of the project will consist of a C++ console application that will 
 
 ### User Login
 **Pre-requisites**: The user has an account in the system and the program is running.</br>
-**Actor**: Seneca Aviation student.</br>
+**Actor**: student/admin/instructor.</br>
 **Use Case Successful Post-conditions**: The user is authenticated by the system.</br>
 
 1. The student clicks on **Login**.
