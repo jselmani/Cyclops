@@ -182,3 +182,17 @@ The back-end of the project will consist of a C++ console application that will 
 4. The system checks the validity of the provided user information and creates a new user account if the form is valid.
 	* The system will display an error on the screen next to field where the error occured. The administrator can enter the field again.
 5. After successfully creating a new user, the system will display a pop-up message informing the administrator about the successful operation and the form will be cleared.
+
+### User Login
+**Pre-requisites**: The user has an account in the system and the program is running.</br>
+**Actor**: Seneca Aviation student.</br>
+**Use Case Successful Post-conditions**: The user is authenticated by the system.</br>
+
+1. The student clicks on **Login**.
+2. The System brings up a modal for the user to enter his/her credentials.
+3. The user enters his/her credentials (username and password) and clicks on the **Login** button inside the modal.
+	* The user can cancel this operation by clicking on the **cancel** button inside the modal.
+4. The system will query the database and compare the credentials provided by the user. If a match is found, then the system will authenticate the user.
+	* The system sends an error message in case authentication fails. The user can enter his/her credentials again.
+5. After the system successfully authenticates the user, they are redirected to a menu page displaying a list of options for flight training simulations.
+
