@@ -197,9 +197,9 @@ The back-end of the project will consist of a C++ console application that will 
 5. After the system successfully authenticates the user, they are redirected to a menu page displaying a list of options for flight training simulations.
 
 ### Administrator Retrieves Data From File System Database
-**Pre-requisites**: The Administrator is logged into the Mongo shell using Administrator credentials
-**Actor**: Administrator
-**Use Case Successful Post-Conditions**: The Administator has found the files path and opens the file.
+**Pre-requisites**: The Administrator is logged into the Mongo shell using Administrator credentials<br/>
+**Actor**: Administrator<br/>
+**Use Case Successful Post-Conditions**: The Administator has found the files path and opens the file.<br/>
 
 1. The Administrator **queries** the database to locate the session they are looking for.  This will be done by using the Users Student Number as the unique identifier and the date the session took place. An example of the query: db.sessions.find({ userId: '101101152', created_at: '20170115'})
 2. The Administrator examines the database BSON output and finds the URL path that is referenced in the BSON document.
