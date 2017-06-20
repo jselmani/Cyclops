@@ -168,10 +168,10 @@ The back-end of the project will consist of a C++ console application that will 
 
 ## Use Cases
 
-### Administrator creates a new user account
-**Pre-requisites**: The administrator has already all the new user information and is currently logged in.</br>
+### Administrator Creates A New User Account
+**Pre-requisites**: The administrator already has all the new user information and is currently logged in.</br>
 **Actor**: Administrator.</br>
-**Use Case Successful Post-conditions**: The administrator creates a new user account.
+**Use Case Successful Post-Conditions**: The administrator creates a new user account.
 
 1. The administrator clicks on **Create New User**.
 2. The system changes its view to display a form to the administrator for him/her to fill up with the new user information.
@@ -184,9 +184,9 @@ The back-end of the project will consist of a C++ console application that will 
 5. After successfully creating a new user, the system will display a pop-up message informing the administrator about the successful operation and the form will be cleared.
 
 ### User Login
-**Pre-requisites**: The user has an account in the system and the program is running.</br>
-**Actor**: student/admin/instructor.</br>
-**Use Case Successful Post-conditions**: The user is authenticated by the system.</br>
+**Pre-requisites**: The User has an account in the system and the program is running.</br>
+**Actor**: Student/Admininstrator/Instructor.</br>
+**Use Case Successful Post-Conditions**: The user is authenticated by the system.</br>
 
 1. The student clicks on **Login**.
 2. The System brings up a model for the user to enter his/her credentials.
@@ -196,3 +196,12 @@ The back-end of the project will consist of a C++ console application that will 
 	* The system sends an error message in case authentication fails. The user can enter his/her credentials again.
 5. After the system successfully authenticates the user, they are redirected to a menu page displaying a list of options for flight training simulations.
 
+### Administrator Retrieves Data From File System Database
+**Pre-requisites**: The Administrator is logged into the Mongo shell using Administrator credentials
+**Actor**: Administrator
+**Use Case Successful Post-Conditions**: The Administator has found the files path and opens the file.
+
+1. The Administrator **queries** the database to locate the session they are looking for.  This will be done by using the Users Student Number as the unique identifier and the date the session took place. An example of the query: db.sessions.find({ userId: '101101152', created_at: '20170115'})
+2. The Administrator examines the database BSON output and finds the URL path that is referenced in the BSON document.
+3. The Administrator copies the URL path from the console and pastes in the file system address bar.
+4. The Administrator successfully locates the file and examines the data as preferred using their preferred data visualization method.
