@@ -175,17 +175,17 @@ The back-end of the project will consist of a C++ console application that will 
 
 1. The administrator clicks on **Create New User**.
 2. The system changes its view to display a form to the administrator for him/her to fill up with the new user information.
-3. The administrator enters the new user infomation and clicks on the **Create** button inside the form.
+3. The administrator enters the new user information and clicks on the **Create** button inside the form.
 	* The administrator can cancel this operation by clicking on the **Cancel** button inside the form, or by clicking the
 	**Back** button. By clicking on the **Cancel** button the form will be cleared, instead, by clicking on the **Back**
 	button the Administrator will be taken back to the main dashboard.
 4. The system checks the validity of the provided user information and creates a new user account if the form is valid.
-	* The system will display an error on the screen next to field where the error occured. The administrator can enter the field again.
+	* The system will display an error on the screen next to field where the error occurred. The administrator can enter the field again.
 5. After successfully creating a new user, the system will display a pop-up message informing the administrator about the successful operation and the form will be cleared.
 
 ### User Login
 **Pre-requisites**: The User has an account in the system and the program is running.</br>
-**Actor**: Student/Admininstrator/Instructor.</br>
+**Actor**: Student/Administrator/Instructor.</br>
 **Use Case Successful Post-Conditions**: The user is authenticated by the system.</br>
 
 1. The student clicks on **Login**.
@@ -199,9 +199,23 @@ The back-end of the project will consist of a C++ console application that will 
 ### Administrator Retrieves Data From File System Database
 **Pre-requisites**: The Administrator is logged into the Mongo shell using Administrator credentials<br/>
 **Actor**: Administrator<br/>
-**Use Case Successful Post-Conditions**: The Administator has found the files path and opens the file.<br/>
+**Use Case Successful Post-Conditions**: The Administrator has found the files path and opens the file.<br/>
 
 1. The Administrator **queries** the database to locate the session they are looking for.  This will be done by using the Users Student Number as the unique identifier and the date the session took place. An example of the query: db.sessions.find({ userId: '101101152', created_at: '20170115'})
 2. The Administrator examines the database BSON output and finds the URL path that is referenced in the BSON document.
 3. The Administrator copies the URL path from the console and pastes in the file system address bar.
 4. The Administrator successfully locates the file and examines the data as preferred using their preferred data visualization method.
+
+### Data Generation from User Interaction with the System
+**Pre-requisites**: A user must be logged in to the system and have chosen a scene to run<br/>
+**Actor**: User<br/>
+**Use Case Successful Post-Conditions**: Data has been successfully written into a CSV file for future analysis and the user is taken back to the scene selection UI<br/>
+
+1. The user would start running the scene by interacting with a physical programable button or a button in the UI.
+	* The user decides to change scenes or exit the program entirely.
+2. The moment the user initiates the scene, the back-end would instantly trigger the capturing of data.
+3. The back-end would be translating the data from the sensors whilst simultaneously parsing and appending the data to the CSV file associated with the user and the current date.
+	* If the file for the user does not exist, the back-end will first create the file for the user based on the user name and the current date. Then the translation of the data from the sensors would occur whilst simultaneously parsing and appending the data to the new CSV file.
+4. The user decides to stop the scene with the same input used to start the scene. This would instantly trigger the back-end to stop the translation of the data as well as the parsing and appending to the CSV file.
+	* The user continues to interact with the scene allowing the system to continue to gather data until the user decides to complete step #4.
+5. Data has been successfully written to the CSV file and the user is brought back to the scene selection UI.
