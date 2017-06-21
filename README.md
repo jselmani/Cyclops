@@ -215,7 +215,7 @@ The back-end of the project will consist of a C++ console application that will 
 	* The user decides to change scenes or exit the program entirely by **interacting** with a physical programmable button or a button in the UI.
 2. The moment the user **initiates** the scene, the back-end would **instantly trigger** the capturing of data.
 3. The back-end would be translating the data from the sensors whilst simultaneously parsing and appending the data to the CSV file associated with the user and the current date.
-	* If the file for the user does not exist, the back-end will first **create** the file for the user based on the user name and the current date. Then the translation of the data from the sensors would occur whilst simultaneously parsing and appending the data to the new CSV file.
+	* If the file for the user **does not exist**, the back-end will first **create** the file for the user based on the user name and the current date. Then the translation of the data from the sensors would occur whilst simultaneously parsing and appending the data to the new CSV file.
 4. The user decides to **stop** the scene by **interacting** with a physical programmable button or a button in the UI. This would **instantly trigger** the back-end to stop the translation of the data as well as the parsing and appending to the CSV file.
 	* The user continues to **interact** with the scene allowing the system to **continue** to gather data until the user **decides** to complete step #4.
 5. Data has been **successfully written** to the CSV file and the user is **brought back** to the scene selection UI.
