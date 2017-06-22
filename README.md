@@ -83,23 +83,8 @@ In this technical overview, we will list these components and their requirements
 
 ### Components and Requirements
 
-#### The Oculus Rift
-* Components of the Rift:
-	* OLED panel for each eye – resolution of 1080×1200 with refresh rate of 90 Hz each panel.
-	* Integrated 3D Headphones.
-	* Accelerometer
-	* Gyroscope
-	* Constellation – the positional tracking system
-		* Tracks the position of the user's head as well as the position of the peripheral device (Touch Controller)
-	* Oculus Touch (Touch Controllers) – pair of handheld motion controllers
-* Software Packaged with the Rift:
-	* Oculus Home – base software of the rift which starts VR applications
-	* Oculus PC SDK - written in C++
-	* Oculus Runtime/Drivers - the runtime and drivers must be installed in order for the rift to function.
-
-
-#### Desktop/Laptop PC
-* Minimum Requirements:
+#### Hardware/Software Requirements for the Oculus Rift
+* Minimum Hardware Requirements:
 	* Graphics Card – NVIDIA GTX 960 / AMD Radeon R9 290 or greater
 	* CPU – Intel i3-6100 / AMD Ryzen 3 1200, FX4350 or greater
 	* RAM – 8GB or greater
@@ -107,7 +92,10 @@ In this technical overview, we will list these components and their requirements
 	* USB 3.0 – 1 Port
 	* USB 2.0 – 2 Ports
 	* Operating System – Windows 8.1 or newer
-
+* Software Requirements:
+	* Oculus Home – base software of the rift which starts VR applications
+	* Oculus PC SDK - written in C++
+	* Oculus Runtime/Drivers - the runtime and drivers must be installed in order for the rift to function.
 
 #### Database
 * MongoDB (NoSQL)
