@@ -83,19 +83,19 @@ In this technical overview, we will list these components and their requirements
 
 ### Components and Requirements
 
-#### Hardware/Software Requirements for the Oculus Rift
-* Minimum Hardware Requirements:
+#### Hardware/Software Requirements for the Oculus Rift + Touch
+* Hardware Requirements:
 	* Graphics Card – NVIDIA GTX 960 / AMD Radeon R9 290 or greater
 	* CPU – Intel i3-6100 / AMD Ryzen 3 1200, FX4350 or greater
 	* RAM – 8GB or greater
 	* HDMI – version 1.3
 	* USB 3.0 – 1 Port
 	* USB 2.0 – 2 Ports
-	* Operating System – Windows 8.1 or newer
 * Software Requirements:
 	* Oculus Home – base software of the rift which starts VR applications
 	* Oculus PC SDK - written in C++
 	* Oculus Runtime/Drivers - the runtime and drivers must be installed in order for the rift to function.
+	* Operating System – Windows 8.1 or newer
 
 #### Database
 * MongoDB (NoSQL)
