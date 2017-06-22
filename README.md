@@ -83,8 +83,7 @@ In this technical overview, we will list these components and their requirements
 
 ### Components and Requirements
 
-#### Components Overview
-* Desktop/Laptop Hardware Requirements:
+* Minimum Desktop/Laptop Hardware Requirements:
 	* Graphics Card – NVIDIA GTX 960 / AMD Radeon R9 290 or equivalent 
 	* CPU – Intel i3-6100 / AMD Ryzen 3 1200, FX4350 or equivalent
 	* RAM – 8GB or greater
