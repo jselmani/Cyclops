@@ -136,14 +136,13 @@ For the reasons outlined above, our front-end will be using rather simple techno
 The back-end of the project will consist of a C++ console application that will extract the sensor data from the Oculus Rift and its peripherals, as well as the MongoDB database that will be hosted locally in the administrators machine.  We have chosen to use C++ and MongoDB for the following reasons:
 * Oculus SDK
   * The SDK is written in C++ and it is imperative that we use C++ in order to extract the sensory data.
-  * The C++ application is lightweight and can be started in the background once the user has logged in and has been validated in the Unity user interface.
+  * The C++ application is lightweight and will be running in the background once the user has launched the scene.
     * This will occur using the Process object in the Unity game engine.
 * Lightweight Database Engine
   * The MongoDB database engine is lightweight and easy to integrate with C#, utilizing drivers to allow Unity integration.
   * Data structuring uses JSON/BSON notation, making it a simpler alternative to MySQL or SQLite
   * Querying in MongoDB uses simpler syntax with less restrictions, making it more error-free than the alternatives.
-
-  The beauty of the back-end is that the front-end will utilize it when required using Unity's Process object.  By doing so, the C++ application executable will run when called upon by Unity, and the MongoDB database can be opened and operating when the Unity application is opened.
+  
 
 ## Use Cases
 
