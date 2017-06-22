@@ -100,6 +100,8 @@ In this technical overview, we will list these components and their requirements
 #### Database
 * MongoDB (NoSQL)
 	* MongoDB must be installed on the local machine and will be configured using the Unity MongoDB driver for C#.
+	* A C++ utility must be written to retreive the data from the Oculus Rift and store into a ".csv" file which will
+	later be referenced by the Database.
 
 #### Unity Game Engine
 * General Documentation:
@@ -111,10 +113,6 @@ In this technical overview, we will list these components and their requirements
 	* Operating System –
 		* Windows 7 or newer
 		* Mac OS X 10.8 or newer
-
-#### Additional Software
-* The Oculus Rift data will be retrieved by a program written in C++.
-	* This program well then write the data to a .CSV file that will be stored in a file system and referenced by the database.
 
 ### Technologies
 
