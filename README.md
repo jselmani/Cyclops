@@ -83,36 +83,30 @@ In this technical overview, we will list these components and their requirements
 
 ### Components and Requirements
 
-#### Hardware/Software Requirements for the Oculus Rift + Touch
-* Hardware Requirements:
-	* Graphics Card – NVIDIA GTX 960 / AMD Radeon R9 290 or greater
-	* CPU – Intel i3-6100 / AMD Ryzen 3 1200, FX4350 or greater
+#### Components Overview
+* Desktop/Laptop Hardware Requirements:
+	* Graphics Card – NVIDIA GTX 960 / AMD Radeon R9 290 or equivalent 
+	* CPU – Intel i3-6100 / AMD Ryzen 3 1200, FX4350 or equivalent
 	* RAM – 8GB or greater
 	* HDMI – version 1.3
 	* USB 3.0 – 1 Port
 	* USB 2.0 – 2 Ports
+* Oculus Hardware Requirements
+	* Oculs Rift Headset
+	* Oculus Touch (Touch Controllers) – pair of handheld motion controllers
+	* Constellation – the positional tracking system which comes with the headset and the Oculus touch
+		* Tracks the position of the user's head as well as the position of the peripheral device (Touch Controller)
 * Software Requirements:
 	* Oculus Home – base software of the rift which starts VR applications
 	* Oculus PC SDK - written in C++
 	* Oculus Runtime/Drivers - the runtime and drivers must be installed in order for the rift to function.
 	* Operating System – Windows 8.1 or newer
-
-#### Database
-* MongoDB (NoSQL)
-	* MongoDB must be installed on the local machine and will be configured using the Unity MongoDB driver for C#.
-	* A C++ utility must be written to retreive the data from the Oculus Rift and store into a ".csv" file which will
-	later be referenced by the Database.
-
-#### Unity Game Engine
-* General Documentation:
-	* Unity is a cross-platform game engine developed by UnityTechnologies.
-	* Unity is primarily used to develop video games and simulations.
-	* Unity scripting is written in C#.
-* System Requirements:
-	* Graphics Card – DX9 or DX11 enabled graphics
-	* Operating System –
-		* Windows 7 or newer
-		* Mac OS X 10.8 or newer
+	* Unity Game Engine - Unity is primarily used to develop video games and simulations, written in C#.
+* Database Requirements:
+	* MongoDB (NoSQL)
+		* MongoDB must be installed on the local machine and will be configured using the Unity MongoDB driver for C#.
+		* A C++ utility must be written to retreive the data from the Oculus Rift and store into a ".csv" file which will
+		later be referenced by the Database.
 
 ### Technologies
 
