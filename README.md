@@ -142,9 +142,26 @@ The back-end of the project will consist of a C++ console application that will 
   * The MongoDB database engine is lightweight and easy to integrate with C#, utilizing drivers to allow Unity integration.
   * Data structuring uses JSON/BSON notation, making it a simpler alternative to MySQL or SQLite
   * Querying in MongoDB uses simpler syntax with less restrictions, making it more error-free than the alternatives.
-  
 
-## Use Cases
+# System Components
+
+### User Account Management
+
+This component will only be accessible by the Administrator who will be able to Create, Read, Update, and Delete user information.  For login purposes, the Admin will provide each User with their login credentials where this component will be used to authenticate the User.
+
+### Oculus Rift SDK/API
+
+The backbone of the entire project, this component will be utilized to extract the telemetry data from the headset and its peripherals, the Oculus Touch gamepads via a C++ program.
+
+### Unity Game Engine
+
+The game engine will be used to generate the Scene for the User.  It will be used by the development team to build and create the environment that the User will immerse themselves in using the Oculus Rift headset.
+
+### MongoDB Database
+
+Used to store the User data that will be created by the Admin, complete with references to the .CSV files that will be stored in the file system locally on the machine after completion of the Users session.
+
+# Use Cases
 
 ### Administrator Creates A New User Account
 **Pre-requisites**: The administrator already has all the new user information and is currently logged in.</br>
