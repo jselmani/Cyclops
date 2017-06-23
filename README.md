@@ -83,50 +83,29 @@ In this technical overview, we will list these components and their requirements
 
 ### Components and Requirements
 
-#### The Oculus Rift
-* Components of the Rift:
-	* OLED panel for each eye – resolution of 1080×1200 with refresh rate of 90 Hz each panel.
-	* Integrated 3D Headphones.
-	* Accelerometer
-	* Gyroscope
-	* Constellation – the positional tracking system
-		* Tracks the position of the user's head as well as the position of the peripheral device (Touch Controller)
-	* Oculus Touch (Touch Controllers) – pair of handheld motion controllers
-* Software Packaged with the Rift:
-	* Oculus Home – base software of the rift which starts VR applications
-	* Oculus PC SDK - written in C++
-	* Oculus Runtime/Drivers - the runtime and drivers must be installed in order for the rift to function.
-
-
-#### Desktop/Laptop PC
-* Minimum Requirements:
-	* Graphics Card – NVIDIA GTX 960 / AMD Radeon R9 290 or greater
-	* CPU – Intel i3-6100 / AMD Ryzen 3 1200, FX4350 or greater
+* Minimum Desktop/Laptop Hardware Requirements:
+	* Graphics Card – NVIDIA GTX 960 / AMD Radeon R9 290 or equivalent 
+	* CPU – Intel i3-6100 / AMD Ryzen 3 1200, FX4350 or equivalent
 	* RAM – 8GB or greater
 	* HDMI – version 1.3
 	* USB 3.0 – 1 Port
 	* USB 2.0 – 2 Ports
+* Oculus Hardware Requirements
+	* Oculs Rift Headset
+	* Oculus Touch (Touch Controllers) – pair of handheld motion controllers
+	* Constellation – the positional tracking system which comes with the headset and the Oculus touch
+		* Tracks the position of the user's head as well as the position of the peripheral device (Touch Controller)
+* Software Requirements:
+	* Oculus Home – base software of the rift which starts VR applications
+	* Oculus PC SDK - written in C++
+	* Oculus Runtime/Drivers - the runtime and drivers must be installed in order for the rift to function.
 	* Operating System – Windows 8.1 or newer
-
-
-#### Database
-* MongoDB (NoSQL)
-	* MongoDB must be installed on the local machine and will be configured using the Unity MongoDB driver for C#.
-
-#### Unity Game Engine
-* General Documentation:
-	* Unity is a cross-platform game engine developed by UnityTechnologies.
-	* Unity is primarily used to develop video games and simulations.
-	* Unity scripting is written in C#.
-* System Requirements:
-	* Graphics Card – DX9 or DX11 enabled graphics
-	* Operating System –
-		* Windows 7 or newer
-		* Mac OS X 10.8 or newer
-
-#### Additional Software
-* The Oculus Rift data will be retrieved by a program written in C++.
-	* This program well then write the data to a .CSV file that will be stored in a file system and referenced by the database.
+	* Unity Game Engine - Unity is primarily used to develop video games and simulations, written in C#.
+* Database Requirements:
+	* MongoDB (NoSQL)
+		* MongoDB must be installed on the local machine and will be configured using the Unity MongoDB driver for C#.
+		* A C++ utility must be written to retreive the data from the Oculus Rift and store into a ".csv" file which will
+		later be referenced by the Database.
 
 ### Technologies
 
@@ -157,15 +136,82 @@ For the reasons outlined above, our front-end will be using rather simple techno
 The back-end of the project will consist of a C++ console application that will extract the sensor data from the Oculus Rift and its peripherals, as well as the MongoDB database that will be hosted locally in the administrators machine.  We have chosen to use C++ and MongoDB for the following reasons:
 * Oculus SDK
   * The SDK is written in C++ and it is imperative that we use C++ in order to extract the sensory data.
-  * The C++ application is lightweight and can be started in the background once the user has logged in and has been validated in the Unity user interface.
+  * The C++ application is lightweight and will be running in the background once the user has launched the scene.
     * This will occur using the Process object in the Unity game engine.
 * Lightweight Database Engine
   * The MongoDB database engine is lightweight and easy to integrate with C#, utilizing drivers to allow Unity integration.
   * Data structuring uses JSON/BSON notation, making it a simpler alternative to MySQL or SQLite
   * Querying in MongoDB uses simpler syntax with less restrictions, making it more error-free than the alternatives.
 
-  The beauty of the back-end is that the front-end will utilize it when required using Unity's Process object.  By doing so, the C++ application executable will run when called upon by Unity, and the MongoDB database can be opened and operating when the Unity application is opened.
+# System Components
 
-## Use Cases
+### User Account Management
 
-To be completed for final submissions
+This component will only be accessible by the Administrator who will be able to Create, Read, Update, and Delete user information.  For login purposes, the Admin will provide each User with their login credentials where this component will be used to authenticate the User.
+
+### Oculus Rift SDK/API
+
+The backbone of the entire project, this component will be utilized to extract the telemetry data from the headset and its peripherals, the Oculus Touch gamepads via a C++ program.
+
+### Unity Game Engine
+
+The game engine will be used to generate the Scene for the User.  It will be used by the development team to build and create the environment that the User will immerse themselves in using the Oculus Rift headset.
+
+### MongoDB Database
+
+Used to store the User data that will be created by the Admin, complete with references to the .CSV files that will be stored in the file system locally on the machine after completion of the Users session.
+
+# Use Cases
+
+### Administrator Creates A New User Account
+**Pre-requisites**: The administrator already has all the new user information and is currently logged in.</br>
+**Actor**: Administrator.</br>
+**Use Case Successful Post-Conditions**: The administrator creates a new user account.
+
+1. The administrator clicks on **Create New User**.
+2. The system changes its view to display a form to the administrator for him/her to fill up with the new user information.
+3. The administrator enters the new user information and clicks on the **Reset** button inside the form.
+	* The administrator can cancel this operation by clicking on the **Reset** button inside the form, or by clicking the
+	**Back** button. By clicking on the **Reset** button the form will be cleared, instead, by clicking on the **Back**
+	button the Administrator will be taken back to the main dashboard.
+4. The system checks the validity of the provided user information and creates a new user account if the form is valid.
+	* The system will display an error on the screen next to field where the error occurred. The administrator can enter the field again.
+5. After successfully creating a new user, the system will display a pop-up message informing the administrator about the successful operation and the form will be cleared.
+
+### User Login
+**Pre-requisites**: The User has an account in the system and is on the login page.</br>
+**Actor**: Student/Administrator.</br>
+**Use Case Successful Post-Conditions**: The user is authenticated by the system.</br>
+
+1. The user clicks on **Login**.
+2. The System brings up a model for the user to enter his/her credentials.
+3. The user enters his/her credentials (username and password) and clicks on the **Login** button inside the model.
+	* The user can cancel this operation by clicking on the **cancel** button inside the model.
+4. The system will query the database and compare the credentials provided by the user. If a match is found, then the system will authenticate the user.
+	* The system sends an error message in case authentication fails. The user can enter his/her credentials again.
+5. After the system successfully authenticates the user, they are redirected to a menu page displaying a list of options for flight training simulations.
+
+### Administrator Retrieves File Data From Database
+**Pre-requisites**: The Administrator is logged into the Mongo shell using Administrator credentials.<br/>
+**Actor**: Administrator.<br/>
+**Use Case Successful Post-Conditions**: The Administrator has found the file(s) path and opens the file(s).<br/>
+
+1. The Administrator queries the database to locate the session they are looking for.  This will be done by using the Users Student Number as the unique identifier and the date the session took place. An example of the query: db.sessions.find({ userId: '101101152', created_at: '20170115'})
+2. The Administrator examines the database BSON output and finds the URL path that is referenced in the BSON document.
+	* The BSON output is empty, the Administrator will have to repeat step #1 or cancel the operation.
+3. The Administrator copies the URL path from the console and pastes in the file system address bar.
+4. The Administrator successfully locates the file and examines the data as preferred using their preferred data visualization method.
+
+### Data Generation from User Interaction with the System
+**Pre-requisites**: A user must be logged in to the system and have chosen a scene to run.<br/>
+**Actor**: Student.<br/>
+**Use Case Successful Post-Conditions**: Data has been successfully written into a CSV file for future analysis and the user is taken back to the scene selection UI<br/>
+
+1. The user would start running the scene by interacting with the **start/stop** button.
+	* The user decides to exit the scene by interacting with **start/stop** button.
+2. The moment the user initiates the scene, the back-end would instantly trigger the capturing of data.
+3. The back-end would be translating the data from the sensors while simultaneously parsing and appending the data to the CSV file associated with the user and the current date.
+	* If the file for the user does not exist, the back-end will first create the file for the user based on the user name and the current date. Then the translation of the data from the sensors would occur while simultaneously parsing and appending the data to the new CSV file.
+4. The user decides to stop the scene by interacting with the **start/end** button. This would instantly trigger the back-end to stop the translation of the data as well as the parsing and appending to the CSV file.
+	* The user continues to interact with the scene allowing the system to continue to gather data until the user decides to complete step #4.
+5. Data has been successfully written to the CSV file and the user is brought back to the scene selection UI.
