@@ -170,7 +170,7 @@ Used to store the User data that will be created by the Admin, complete with ref
 
 1. The administrator clicks on **Create New User**.
 2. The system changes its view to display a form to the administrator for him/her to fill up with the new user information.
-3. The administrator enters the new user information and clicks on the **Reset** button inside the form.
+3. The administrator enters the new user information and clicks on the **Submit** button inside the form.
 	* The administrator can cancel this operation by clicking on the **Reset** button inside the form, or by clicking the
 	**Back** button. By clicking on the **Reset** button the form will be cleared, instead, by clicking on the **Back**
 	button the Administrator will be taken back to the main dashboard.
