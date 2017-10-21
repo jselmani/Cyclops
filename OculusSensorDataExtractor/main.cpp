@@ -56,7 +56,7 @@ void printMEMSData(ovrSession& hmd) {
 		Vector3f linVelData = ts.HeadPose.LinearVelocity;
 		
 		// get the "Head Pose" of the individual wearing HMD
-		// create quaternion variable to for Orientation information
+		// create quaternion variable for Orientation information
 		ovrPosef pose = ts.HeadPose.ThePose;
 		Quatf quaternion = pose.Orientation;
 		float yaw, pitch, roll;
