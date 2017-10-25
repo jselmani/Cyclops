@@ -17,17 +17,17 @@ bool GetDesktopfilePath(PTCHAR filePath, PTCHAR fileName)
 	return true;
 }
 
-OCULUSDATAEXTARCTION_API DataExtractor * CreateDataExtractor()
+OCULUSDATAEXTRACTION_API DataExtractor * CreateDataExtractor()
 {
 	return new DataExtractor();
 }
 
-OCULUSDATAEXTARCTION_API void DestroyDataExtractor(DataExtractor * dataEx)
+OCULUSDATAEXTRACTION_API void DestroyDataExtractor(DataExtractor * dataEx)
 {
 	delete dataEx;
 }
 
-OCULUSDATAEXTARCTION_API void getData(DataExtractor * dataEx)
+OCULUSDATAEXTRACTION_API void getData(DataExtractor * dataEx)
 {
 	dataEx->getData();
 }
