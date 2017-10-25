@@ -6,7 +6,7 @@
 #include <shlobj.h>
 #include <stdlib.h>
 
-#define OCULUSDATAEXTARCTION_API __declspec(dllexport)
+#define OCULUSDATAEXTRACTION_API __declspec(dllexport)
 
 bool GetDesktopfilePath(PTCHAR filePath, PTCHAR fileName);
 
@@ -21,7 +21,7 @@ public:
 };
 
 extern "C" {
-	OCULUSDATAEXTARCTION_API DataExtractor* CreateDataExtractor();
-	OCULUSDATAEXTARCTION_API void DestroyDataExtractor(DataExtractor* dataEx);
-	OCULUSDATAEXTARCTION_API void getData(DataExtractor* dataEx);
+	OCULUSDATAEXTRACTION_API DataExtractor* CreateDataExtractor();
+	OCULUSDATAEXTRACTION_API void DestroyDataExtractor(DataExtractor* dataEx);
+	OCULUSDATAEXTRACTION_API void getData(DataExtractor* dataEx);
 }
