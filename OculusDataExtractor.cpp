@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include "OculusSensorDataExtractor.h"
+#include "OculusDataExtractor.h"
 
 bool GetDesktopfilePath(PTCHAR filePath, PTCHAR fileName)
 {
