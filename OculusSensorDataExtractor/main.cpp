@@ -54,7 +54,7 @@ void init(ovrSession& hmd, ovrGraphicsLuid& luid, std::ofstream& output) {
 	}
 
 	TCHAR filePath[MAX_PATH];           // store the path of the file
-	TCHAR fileName[] = L"\\Demo.txt";   // the file name must begin with "\\"
+	TCHAR fileName[] = L"\\Demo.csv";   // the file name must begin with "\\"
 
 	GetDesktopfilePath(filePath, fileName); // get the full path of the file situated in the Desktop
 
@@ -115,7 +115,7 @@ void outputData(ovrSession& hmd, std::ofstream& output) {
 	printHmdDesc(desc, output);
 	output << "                           Sensor Data                            " << endl;
 	output << "==================================================================" << endl;
-	for(int i = 0; i < 500; i++) {
+	for(int i = 0; i < 250; i++) {
 		printMEMSData(hmd, output);
 		Sleep(200);
 	}
