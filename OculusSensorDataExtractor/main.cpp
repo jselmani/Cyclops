@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 /***********************************************
 Oculus Data Extractor
 
@@ -13,6 +14,7 @@ Date: October 21, 2017
 #include <fstream>
 #include <shlobj.h>
 #include <stdlib.h>
+
 
 using namespace OVR;
 using namespace std;
@@ -90,13 +92,19 @@ void printMEMSData(ovrSession& hmd, std::ofstream& output) {
 		float yaw, pitch, roll;
 		quaternion.GetEulerAngles<Axis_Y, Axis_X, Axis_Z>(&yaw, &pitch, &roll);
 
-		output << "Angular Acceleration (x,y,z): " << angAccelData.x << ", " << angAccelData.y << ", " << angAccelData.z << endl;
+		output << angAccelData.x << "," << angAccelData.y << "," << angAccelData.z << ","
+			<< linAccelData.x << "," << linAccelData.y << "," << linAccelData.z << ","
+			<< gyroData.x << "," << gyroData.y << "," << gyroData.z << ","
+			<< linVelData.x << "," << linVelData.y << "," << linVelData.z << ","
+			<< RadToDegree(yaw) << "," << RadToDegree(pitch) << "," << RadToDegree(roll) << endl;
+
+		/*output << "Angular Acceleration (x,y,z): " << angAccelData.x << ", " << angAccelData.y << ", " << angAccelData.z << endl;
 		output << "Linear Acceleration (x,y,z): " << linAccelData.x << ", " << linAccelData.y << ", " << linAccelData.z << endl;
 		output << "Angular Velocity (x,y,z): " << gyroData.x << ", " << gyroData.y << ", " << gyroData.z << endl;
 		output << "Linear Velocity (x,y,z): " << linVelData.x << ", " << linVelData.y << ", " << linVelData.z << endl;
 		output << "Yaw: " << RadToDegree(yaw) << endl;
 		output << "Pitch: " << RadToDegree(pitch) << endl;
-		output << "Roll: " << RadToDegree(roll) << endl;
+		output << "Roll: " << RadToDegree(roll) << endl;*/
 	}
 }
 
@@ -107,7 +115,7 @@ void outputData(ovrSession& hmd, std::ofstream& output) {
 	printHmdDesc(desc, output);
 	output << "                           Sensor Data                            " << endl;
 	output << "==================================================================" << endl;
-	for(int i = 0; i < 2000; i++) {
+	for(int i = 0; i < 500; i++) {
 		printMEMSData(hmd, output);
 		Sleep(200);
 	}
