@@ -3,3 +3,8 @@ OculusSensorDataExtractor.VC.db
 OculusSensorDataExtractor.VC.VC.opendb
 .vs
 Debug
+OculusSDK
+OculusSensorDataExtractor.vcxproj
+OculusSensorDataExtractor.vcxproj.filters
+README.md
+LICENSE
