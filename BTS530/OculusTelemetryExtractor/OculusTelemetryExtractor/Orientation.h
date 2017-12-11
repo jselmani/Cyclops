@@ -14,8 +14,14 @@ namespace extractor {
 		float roll;
 	public:
 		Orientation();
-		void printToFile(std::ofstream&);
+		Orientation(const std::string&);
+		void initOrientationValues(ovrPosef&);
+		void initPositionValues(ovrPosef&);
+		void setData(ovrSession&, ovrTrackingState&);
+		void writeToFile(std::ostream&) const;
 	};
+
+	std::ostream& operator<<(std::ostream&, const Orientation&);
 }
 
 #endif

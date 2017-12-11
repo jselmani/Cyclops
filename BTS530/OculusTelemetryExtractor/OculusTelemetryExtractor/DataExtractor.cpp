@@ -6,35 +6,28 @@ namespace extractor {
 	DataExtractor::DataExtractor() {
 		serialNum.clear();
 		counter = 0;
-		ovrResult result = ovr_Initialize(nullptr);
-		if (OVR_FAILURE(result))
-			return;
-
-		result = ovr_Create(&hmd, &luid);
-		if (OVR_FAILURE(result)) {
-			ovr_Shutdown();
-			return;
-		}
 	}
 
 	// read in from configuration file (see SampleConfig.csv)
-	DataExtractor::DataExtractor(const char* in) {
+	// and build object
+	DataExtractor::DataExtractor(const char* s) {
 		DataExtractor();
-		std::ifstream inputFile(in, std::ios::in);
+		std::ifstream file(s, std::ios::in);
 
-		if (inputFile.fail())
+		if (file.fail())
 			throw std::string("Could not open the configuration file.");
 		else {
-			while (!inputFile.eof()) {
+			while (!file.eof()) {
 				int tmp;
-				inputFile >> tmp;
-				inputFile.ignore();
+				file >> tmp;
+				file.ignore();
 				determineTelType(tmp);
 			}
 		}
 	}
 
 	// Destructor
+	// TODO: clean up all values, not just HMD
 	DataExtractor::~DataExtractor() {
 		ovr_Destroy(hmd);
 		ovr_Shutdown();
@@ -55,16 +48,33 @@ namespace extractor {
 	}
 
 	// open file with dynamic name
-	void DataExtractor::openFile() {
+	void DataExtractor::openFileForWriting() {
 		serialNum = getSerialNum();
 		file->getStream().open(createFileName(serialNum, ".csv").c_str());
 	}
 
 	// determine telemetry type to push into vector
+	// vector will be iterated through to print data to file
 	void DataExtractor::determineTelType(int telType) {
 		switch (telType) {
 		case 1:
-
+			data.push_back(new AngAccel());
+			break;
+		case 2:
+			data.push_back(new AngVelocity());
+			break;
+		case 3:
+			data.push_back(new LinAccel());
+			break;
+		case 4:
+			data.push_back(new LinVelocity());
+			break;
+		case 5:
+			data.push_back(new Orientation());
+			break;
+		default:
+			throw new std::string("The configuration file has been corrupted.");
+			break;
 		}
 	}
 }

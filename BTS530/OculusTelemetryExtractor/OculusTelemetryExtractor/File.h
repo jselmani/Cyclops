@@ -15,7 +15,7 @@ namespace extractor {
 		std::ofstream ostr;
 	public:
 		std::ofstream& getStream();
-		File& operator=(File&);
+		//File& operator=(File&);
 	};
 }
 

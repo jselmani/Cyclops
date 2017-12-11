@@ -10,8 +10,12 @@ namespace extractor {
 		Vector3f aaData;
 	public:
 		AngAccel();
-		std::ofstream& operator<<(std::ofstream&) const;
+		AngAccel(const std::string&);
+		void setData(ovrSession&, ovrTrackingState&);
+		void writeToFile(std::ostream&) const;
 	};
+
+	std::ostream& operator<<(std::ostream&, const AngAccel&);
 }
 
 #endif

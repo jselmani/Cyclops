@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <vector>
-#include "../../OculusSDK/LibOVR/Include/OVR_CAPI.h"
-#include "../../OculusSDK/LibOVR/Include/Extras/OVR_Math.h"
+#include "D:/OculusSDK/LibOVR/Include/OVR_CAPI.h"
+#include "D:/OculusSDK/LibOVR/Include/Extras/OVR_Math.h"
 #include "AngAccel.h"
 #include "AngVelocity.h"
 #include "LinAccel.h"
@@ -19,13 +19,13 @@ namespace extractor {
 
 	class Telemetry {
 	private:
-		std::string type; //declare type of class name that derives it
-		telType dataType;
+		std::string type;
 	protected:
 		Telemetry();
 		Telemetry(const std::string&);
 	public:
-		virtual void printToFile(std::ofstream&) const = 0;
+		virtual void setData(ovrSession&, ovrTrackingState&) = 0;
+		virtual void writeToFile(std::ostream&) const = 0;
 		std::string getType() const;
 	};
 }

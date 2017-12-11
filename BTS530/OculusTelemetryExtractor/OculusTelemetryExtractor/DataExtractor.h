@@ -18,12 +18,13 @@ namespace extractor {
 		int counter; // used to change file name
 	public:
 		DataExtractor();
-		DataExtractor(const char*);
+		DataExtractor(const char*); // read in from file and build object
 		~DataExtractor();
 		std::string getSerialNum();
 		std::string createFileName(const std::string&, const std::string&);
 		void determineTelType(int);
-		void openFile();
+		void openFileForWriting();
+		void initHeadset();
 	};
 }
 

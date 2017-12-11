@@ -10,8 +10,12 @@ namespace extractor {
 		Vector3f lvData;
 	public:
 		LinVelocity();
-		void printToFile(std::ofstream&);
+		LinVelocity(const std::string&);
+		void setData(ovrSession&, ovrTrackingState&);
+		void writeToFile(std::ostream&) const;
 	};
+
+	std::ostream& operator<<(std::ostream&, const LinVelocity&);
 }
 
 #endif

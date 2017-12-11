@@ -92,7 +92,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;../../OculusSDK/LibOVR/Lib/Windows/Win32/Release/VS2015/LibOVR.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;D:/OculusSDK/LibOVR/Lib/Windows/Win32/Release/VS2015/LibOVR.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="AngAccel.h" />
     <ClInclude Include="AngVelocity.h" />
+    <ClInclude Include="App.h" />
     <ClInclude Include="DataExtractor.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="LinAccel.h" />
@@ -154,8 +155,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AngAccel.cpp" />
+    <ClCompile Include="AngVelocity.cpp" />
+    <ClCompile Include="App.cpp" />
     <ClCompile Include="DataExtractor.cpp" />
     <ClCompile Include="File.cpp" />
+    <ClCompile Include="LinAccel.cpp" />
+    <ClCompile Include="LinVelocity.cpp" />
+    <ClCompile Include="Orientationcpp.cpp" />
     <ClCompile Include="Telemetry.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
