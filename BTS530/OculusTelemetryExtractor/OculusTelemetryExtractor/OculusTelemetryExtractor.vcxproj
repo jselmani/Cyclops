@@ -161,7 +161,7 @@
     <ClCompile Include="File.cpp" />
     <ClCompile Include="LinAccel.cpp" />
     <ClCompile Include="LinVelocity.cpp" />
-    <ClCompile Include="Orientationcpp.cpp" />
+    <ClCompile Include="Orientation.cpp" />
     <ClCompile Include="Telemetry.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

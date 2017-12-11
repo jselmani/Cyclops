@@ -65,10 +65,10 @@
     <ClCompile Include="LinVelocity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Orientationcpp.cpp">
+    <ClCompile Include="App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="App.cpp">
+    <ClCompile Include="Orientation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

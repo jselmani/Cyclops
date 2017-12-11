@@ -3,5 +3,5 @@ OculusSDK
 Debug
 OculusTelemetryExtractor.sln
 OculusTelemetryExtractor.VC.db
-OculusTelemetryExtractor.vcxproj
-OculusTelemetryExtractor.vcxproj.filters
+BTS530/OculusTelemetryExtractor/OculusTelemetryExtractor/OculusTelemetryExtractor.vcxproj
+BTS530/OculusTelemetryExtractor/OculusTelemetryExtractor/OculusTelemetryExtractor.vcxproj.filters
