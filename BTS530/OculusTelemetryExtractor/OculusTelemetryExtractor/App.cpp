@@ -4,8 +4,23 @@ namespace extractor {
 
 	App::App() {}
 
-	int App::run(const char*) {
-
+	void App::run(const char* in) {
+		int choice = menu();
+		do {
+			switch (choice) {
+			case 1:
+				dataEx.initializeForSim(in);
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			default:
+				std::cout << "--- INVALID SELECTION ---" << std::endl;
+				std::cout << "Please input a valid number" << std::endl;
+				break;
+			}
+		} while (choice != 3);
 	}
 
 	int App::menu() {
@@ -17,10 +32,12 @@ namespace extractor {
 			std::cout << std::endl;
 			std::cin.clear();
 			if (input >= 1 && input <= 3)
-				return input;
+				break;
 			else
 				printOptionsToConsole();
 		} while (!std::cin.fail());
+
+		return input;
 	}
 
 	void App::printOptionsToConsole() {

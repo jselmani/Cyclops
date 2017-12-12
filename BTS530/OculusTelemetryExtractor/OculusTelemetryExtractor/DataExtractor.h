@@ -3,8 +3,19 @@
 #define FILE_LENGTH 2000
 
 #include "File.h"
-#include "Telemetry.h"
+#include "AngAccel.h"
+#include "AngVelocity.h"
+#include "LinAccel.h"
+#include "LinVelocity.h"
+#include "Orientation.h"
 
+/*
+	TODO:
+	- Add timestamp to every telemetry data point
+	- write to file by using threads
+	- write main to run program
+	- DEBUG/TEST WITH OCULUS
+*/
 namespace extractor {
 
 	class DataExtractor {
@@ -18,12 +29,12 @@ namespace extractor {
 		int counter; // used to change file name
 	public:
 		DataExtractor();
-		DataExtractor(const char*); // read in from file and build object
 		~DataExtractor();
 		std::string getSerialNum();
 		std::string createFileName(const std::string&, const std::string&);
 		void determineTelType(int);
 		void openFileForWriting();
+		void initializeForSim(const char*); // read in from file and build object
 		void initHeadset();
 	};
 }

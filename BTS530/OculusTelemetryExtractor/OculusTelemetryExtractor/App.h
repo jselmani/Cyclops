@@ -9,7 +9,7 @@ namespace extractor {
 			DataExtractor dataEx;
 		public:
 			App();
-			int run(const char*);
+			void run(const char*);
 			int menu();
 			void printOptionsToConsole();
 	};
