@@ -2,7 +2,6 @@
 #define _TELEMETRY_H_	
 
 #include <iostream>
-#include <vector>
 #include "../../OculusSDK/LibOVR/Include/OVR_CAPI.h"
 #include "../../OculusSDK/LibOVR/Include/Extras/OVR_Math.h"
 

@@ -6,13 +6,13 @@
 namespace extractor {
 
 	class AngVelocity : public Telemetry {
-	private:
-		Vector3f avData;
-	public:
-		AngVelocity();
-		AngVelocity(const std::string& str);
-		void setData(ovrSession&, ovrTrackingState&);
-		void writeToFile(std::ostream&) const;
+		private:
+			Vector3f avData;
+		public:
+			AngVelocity();
+			AngVelocity(const std::string& str);
+			void setData(ovrSession&, ovrTrackingState&);
+			void writeToFile(std::ostream&) const;
 	};
 
 	std::ostream& operator<<(std::ostream&, const AngVelocity&);

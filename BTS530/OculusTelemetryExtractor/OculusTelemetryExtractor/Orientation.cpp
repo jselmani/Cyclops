@@ -8,6 +8,7 @@ namespace extractor {
 		yaw = 0;
 		pitch = 0;
 		roll = 0;
+		getType().clear();
 	}
 
 	Orientation::Orientation(const std::string& str) : Telemetry(str) {}
@@ -35,7 +36,7 @@ namespace extractor {
 	}
 
 	void Orientation::writeToFile(std::ostream& output) const {
-		output << RadToDegree(yaw) << "," << RadToDegree(pitch) << "," << RadToDegree(roll);
+		output << RadToDegree(yaw) << "," << RadToDegree(pitch) << "," << RadToDegree(roll) << ",";
 	}
 
 	std::ostream& operator<<(std::ostream& output, const Orientation& data) {

@@ -2,6 +2,7 @@
 #define _DATAEXTRACTOR_H_
 #define FILE_LENGTH 2000
 
+#include <vector>
 #include "File.h"
 #include "AngAccel.h"
 #include "AngVelocity.h"
@@ -18,24 +19,30 @@
 */
 namespace extractor {
 
+	static bool canWrite = false;
+
 	class DataExtractor {
-	private:
-		ovrSession hmd;
-		ovrGraphicsLuid luid;
-		ovrTrackingState trackState;
-		File* file;
-		std::vector<Telemetry*> data;
-		std::string serialNum;
-		int counter; // used to change file name
-	public:
-		DataExtractor();
-		~DataExtractor();
-		std::string getSerialNum();
-		std::string createFileName(const std::string&, const std::string&);
-		void determineTelType(int);
-		void openFileForWriting();
-		void initializeForSim(const char*); // read in from file and build object
-		void initHeadset();
+		private:
+			ovrSession hmd;
+			ovrGraphicsLuid luid;
+			ovrTrackingState trackState;
+			ovrBool HmdPresent;
+			File* file;
+			std::vector<Telemetry*> data;
+			std::string serialNum;
+			int counter; // used to change file name
+		public:
+			DataExtractor();
+			~DataExtractor();
+			std::string getSerialNum();
+			std::string createFileName(const std::string&, const std::string&);
+			void closeFile();
+			void determineTelType(int);
+			void openFileForWriting();
+			void write(); // proxy that will call writeDataToFile
+			void writeDataToFile();
+			void initializeForSim(const char*); // read in from file and build object
+			void initHeadset();
 	};
 }
 

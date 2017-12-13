@@ -11,11 +11,11 @@
 namespace extractor {
 
 	class File {
-	private:
-		std::ofstream ostr;
-	public:
-		std::ofstream& getStream();
-		//File& operator=(File&);
+		private:
+			std::ofstream ostr;
+		public:
+			std::ofstream& getStream();
+			//File& operator=(File&);
 	};
 }
 

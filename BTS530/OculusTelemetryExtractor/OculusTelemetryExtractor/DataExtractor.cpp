@@ -6,23 +6,30 @@ namespace extractor {
 	DataExtractor::DataExtractor() {
 		serialNum.clear();
 		counter = 0;
+		HmdPresent = false;
+		file = nullptr;
 	}
 
 	// read in from configuration file (see SampleConfig.csv)
 	// and build object
-	void DataExtractor::initializeForSim(const char* s) {
-		initHeadset();
-		std::ifstream file(s, std::ios::in);
-		if (file.fail())
-			throw std::string("Could not open the configuration file.");
+	void DataExtractor::initializeForSim(const char* in) {
+		if (!HmdPresent)
+			std::cout << "--- INITIALIZE HEADSET FIRST ---" << std::endl;
 		else {
-			while (!file.eof()) {
-				int tmp;
-				file >> tmp;
-				file.ignore();
-				determineTelType(tmp);
+			std::ifstream configFile(in, std::ios::in);
+			if (configFile.fail())
+				throw std::string("Could not open the configuration file.");
+			else {
+				while (!configFile.eof()) {
+					int tmp;
+					configFile >> tmp;
+					configFile.ignore();
+					determineTelType(tmp);
+				}
+				configFile.close();
+				openFileForWriting();
+				std::cout << "--- HEADSET INITIALIZED FOR SIMULATION ---" << std::endl;
 			}
-			openFileForWriting();
 		}
 	}
 
@@ -51,6 +58,7 @@ namespace extractor {
 	void DataExtractor::openFileForWriting() {
 		serialNum = getSerialNum();
 		file->getStream().open(createFileName(serialNum, ".csv").c_str());
+		canWrite = true;
 	}
 
 	// determine telemetry type to push into vector
@@ -88,5 +96,27 @@ namespace extractor {
 			ovr_Shutdown();
 			return;
 		}
+		HmdPresent = true;
+	}
+
+	void DataExtractor::writeDataToFile() {
+		if (!file->getStream().is_open()) {
+			throw std::string("The file is corrupted.");
+		}
+		else {
+			while (extractor::canWrite) {
+				for (auto it = data.begin(); it != data.end(); it++)
+					(*it)->writeToFile(file->getStream());
+				std::cout << std::endl;
+			}
+		}
+	}
+
+	void DataExtractor::closeFile() {
+		file->getStream().close();
+	}
+
+	void DataExtractor::write() {
+		writeDataToFile();
 	}
 }

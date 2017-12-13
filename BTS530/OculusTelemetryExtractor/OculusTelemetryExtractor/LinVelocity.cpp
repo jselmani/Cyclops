@@ -20,7 +20,7 @@ namespace extractor {
 	// TODO: Write Date & Time stamp for each piece of telemetry
 	// being pulled from HMD
 	void LinVelocity::writeToFile(std::ostream& output) const {
-		output << lvData.x << "," << lvData.y << "," << lvData.z;
+		output << lvData.x << "," << lvData.y << "," << lvData.z << ",";
 	}
 
 	std::ostream& operator<<(std::ostream& output, const LinVelocity& data) {
