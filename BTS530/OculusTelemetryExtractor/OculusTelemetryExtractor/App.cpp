@@ -5,20 +5,27 @@ namespace extractor {
 	App::App() {}
 
 	void App::run(const char* in) {
-		int choice = menu();
+		int choice = 0;
 		do {
+			choice = menu();
 			switch (choice) {
 			case 1:
 				dataEx.initHeadset();
 				break;
 			case 2:
 				dataEx.initializeForSim(in);
-				fileWriter = std::thread{ &write };
-				fileWriter.detach();
+				if (dataEx.headsetPresent()) {
+					fileWriter = std::thread{ &DataExtractor::writeDataToFile, dataEx };
+					fileWriter.detach();
+				}
 				break;
 			case 3:
-				canWrite = false;
-				dataEx.closeFile();
+				if (dataEx.getFileObject().is_open()) {
+					canWrite = false;
+					dataEx.closeFile();
+				}
+				else
+					std::cout << "--- START SIMULATION FIRST ---" << std::endl << std::endl;
 				break;
 			case 4:
 				char exit;
@@ -28,7 +35,7 @@ namespace extractor {
 				break;
 			default:
 				std::cout << "--- INVALID SELECTION ---" << std::endl;
-				std::cout << "Please input a valid number" << std::endl;
+				std::cout << "Please input a valid number" << std::endl << std::endl;
 				break;
 			}
 		} while (choice != 4);
@@ -58,7 +65,7 @@ namespace extractor {
 		std::cout << "2 - Begin Simulation" << std::endl;
 		std::cout << "3 - End Simulation" << std::endl;
 		std::cout << "4 - Exit Program" << std::endl;
-		std::cout << "> " << std::endl;
+		std::cout << "> ";
 	}
 
 	void App::write() {

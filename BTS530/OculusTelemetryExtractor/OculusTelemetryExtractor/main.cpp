@@ -10,6 +10,5 @@ int main(int argc, char** argv) {
 	catch (std::string msg) {
 		std::cout << msg << std::endl;
 	}
-
 	return 0;
 }

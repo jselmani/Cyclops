@@ -36,7 +36,8 @@ namespace extractor {
 	}
 
 	void Orientation::writeToFile(std::ostream& output) const {
-		output << RadToDegree(yaw) << "," << RadToDegree(pitch) << "," << RadToDegree(roll) << ",";
+		output << RadToDegree(yaw) << "," << RadToDegree(pitch) << "," 
+			<< RadToDegree(roll) << "," << getCurrTime() << ",";
 	}
 
 	std::ostream& operator<<(std::ostream& output, const Orientation& data) {

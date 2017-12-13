@@ -14,7 +14,8 @@ namespace extractor {
 	// TODO: Write Date & Time stamp for each piece of telemetry
 	// being pulled from HMD
 	void AngVelocity::writeToFile(std::ostream& output) const {
-		output << avData.x << "," << avData.y << "," << avData.z << ",";
+		output << avData.x << "," << avData.y << "," 
+			<< avData.z << "," << getCurrTime() << ",";
 	}
 
 	void AngVelocity::setData(ovrSession& hmd, ovrTrackingState& trackState) {

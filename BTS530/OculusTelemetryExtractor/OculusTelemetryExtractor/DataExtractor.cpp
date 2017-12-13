@@ -7,28 +7,31 @@ namespace extractor {
 		serialNum.clear();
 		counter = 0;
 		HmdPresent = false;
-		file = nullptr;
 	}
 
 	// read in from configuration file (see SampleConfig.csv)
 	// and build object
 	void DataExtractor::initializeForSim(const char* in) {
 		if (!HmdPresent)
-			std::cout << "--- INITIALIZE HEADSET FIRST ---" << std::endl;
+			std::cout << "--- INITIALIZE HEADSET FIRST ---" << std::endl << std::endl;
 		else {
+			data.clear();
 			std::ifstream configFile(in, std::ios::in);
+			configFile.seekg(0, configFile.beg);
 			if (configFile.fail())
 				throw std::string("Could not open the configuration file.");
 			else {
 				while (!configFile.eof()) {
-					int tmp;
+					int tmp = 0;
 					configFile >> tmp;
+					if (tmp == 0)
+						break;
 					configFile.ignore();
 					determineTelType(tmp);
 				}
 				configFile.close();
 				openFileForWriting();
-				std::cout << "--- HEADSET INITIALIZED FOR SIMULATION ---" << std::endl;
+				std::cout << "--- INITIALIZED FOR SIMULATION ---" << std::endl << std::endl;
 			}
 		}
 	}
@@ -57,7 +60,8 @@ namespace extractor {
 	// open file with dynamic name
 	void DataExtractor::openFileForWriting() {
 		serialNum = getSerialNum();
-		file->getStream().open(createFileName(serialNum, ".csv").c_str());
+		file = new std::ofstream();
+		file->open(createFileName(serialNum, ".csv").c_str(), std::ofstream::out);
 		canWrite = true;
 	}
 
@@ -97,26 +101,39 @@ namespace extractor {
 			return;
 		}
 		HmdPresent = true;
+		std::cout << "--- HEADSET INITIALIZED ---" << std::endl << std::endl;
 	}
 
 	void DataExtractor::writeDataToFile() {
-		if (!file->getStream().is_open()) {
+		if (!file->is_open()) {
 			throw std::string("The file is corrupted.");
 		}
 		else {
 			while (extractor::canWrite) {
-				for (auto it = data.begin(); it != data.end(); it++)
-					(*it)->writeToFile(file->getStream());
-				std::cout << std::endl;
+				for (auto it = data.begin(); it != data.end(); it++) {
+					(*it)->setData(hmd, trackState);
+					(*it)->writeToFile(*file);
+				}
+				*file << std::endl;
+				Sleep(50);
 			}
 		}
 	}
 
 	void DataExtractor::closeFile() {
-		file->getStream().close();
+		if (file->is_open()) {
+			file->clear();
+			file->close();
+		}
+		else
+			std::cout << "A file has not been opened yet.  Begin a simulation to write to a file." << std::endl;
 	}
 
-	void DataExtractor::write() {
-		writeDataToFile();
+	std::ofstream& DataExtractor::getFileObject() {
+		return *file;
+	}
+
+	ovrBool DataExtractor::headsetPresent() {
+		return HmdPresent;
 	}
 }

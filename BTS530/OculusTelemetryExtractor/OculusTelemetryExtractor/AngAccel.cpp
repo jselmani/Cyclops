@@ -20,7 +20,8 @@ namespace extractor {
 	// TODO: Write Date & Time stamp for each piece of telemetry
 	// being pulled from HMD
 	void AngAccel::writeToFile(std::ostream& output) const {
-		output << aaData.x << "," << aaData.y << "," << aaData.z << ",";
+		output << aaData.x << "," << aaData.y << "," 
+			<< aaData.z << "," << getCurrTime() << ",";
 	}
 
 	std::ostream& operator<<(std::ostream& output, const AngAccel& data) {

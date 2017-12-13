@@ -2,6 +2,7 @@
 #define _TELEMETRY_H_	
 
 #include <iostream>
+#include "Timestamp.h"
 #include "../../OculusSDK/LibOVR/Include/OVR_CAPI.h"
 #include "../../OculusSDK/LibOVR/Include/Extras/OVR_Math.h"
 

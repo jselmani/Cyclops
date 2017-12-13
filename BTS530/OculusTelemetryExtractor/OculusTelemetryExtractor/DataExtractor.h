@@ -1,9 +1,12 @@
 #ifndef _DATAEXTRACTOR_H_
 #define _DATAEXTRACTOR_H_
-#define FILE_LENGTH 2000
 
+#include <fstream>
 #include <vector>
-#include "File.h"
+#include <windows.h>
+#include <ShlObj.h>
+#include <stdlib.h>
+#include <sstream>
 #include "AngAccel.h"
 #include "AngVelocity.h"
 #include "LinAccel.h"
@@ -12,9 +15,10 @@
 
 /*
 	TODO:
-	- Add timestamp to every telemetry data point
-	- write to file by using threads
-	- write main to run program
+	- delete memory in DataExtractor::vector data by writing function
+	- delete file memory
+	- finish writing destructor
+	- add date to file name
 	- DEBUG/TEST WITH OCULUS
 */
 namespace extractor {
@@ -27,7 +31,7 @@ namespace extractor {
 			ovrGraphicsLuid luid;
 			ovrTrackingState trackState;
 			ovrBool HmdPresent;
-			File* file;
+			std::ofstream* file;
 			std::vector<Telemetry*> data;
 			std::string serialNum;
 			int counter; // used to change file name
@@ -36,10 +40,11 @@ namespace extractor {
 			~DataExtractor();
 			std::string getSerialNum();
 			std::string createFileName(const std::string&, const std::string&);
+			std::ofstream& getFileObject();
+			ovrBool headsetPresent();
 			void closeFile();
 			void determineTelType(int);
 			void openFileForWriting();
-			void write(); // proxy that will call writeDataToFile
 			void writeDataToFile();
 			void initializeForSim(const char*); // read in from file and build object
 			void initHeadset();

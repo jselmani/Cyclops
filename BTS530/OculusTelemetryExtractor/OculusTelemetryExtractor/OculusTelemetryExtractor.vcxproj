@@ -147,23 +147,23 @@
     <ClInclude Include="AngVelocity.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="DataExtractor.h" />
-    <ClInclude Include="File.h" />
     <ClInclude Include="LinAccel.h" />
     <ClInclude Include="LinVelocity.h" />
     <ClInclude Include="Orientation.h" />
     <ClInclude Include="Telemetry.h" />
+    <ClInclude Include="Timestamp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AngAccel.cpp" />
     <ClCompile Include="AngVelocity.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="DataExtractor.cpp" />
-    <ClCompile Include="File.cpp" />
     <ClCompile Include="LinAccel.cpp" />
     <ClCompile Include="LinVelocity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Orientation.cpp" />
     <ClCompile Include="Telemetry.cpp" />
+    <ClCompile Include="Timestamp.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
