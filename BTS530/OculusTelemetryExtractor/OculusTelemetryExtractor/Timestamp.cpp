@@ -2,7 +2,7 @@
 #include "Timestamp.h"
 
 namespace extractor {
-	std::string getCurrDate()
+	std::string& getCurrDate()
 	{
 		std::string currDate;
 
@@ -13,20 +13,17 @@ namespace extractor {
 
 		return currDate;
 	}
-	std::string getCurrTime()
+	void getCurrTime(std::ofstream& output)
 	{
-		std::string currTime;
-		
 		time_t t = time(NULL);
 		tm* timePtr = localtime(&t);
 		std::chrono::milliseconds now  = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 		std::chrono::milliseconds msec = std::chrono::duration_cast<std::chrono::milliseconds>(now % std::chrono::seconds(1));
 
-		currTime = std::to_string(timePtr->tm_hour) + ':' 
-				 + std::to_string(timePtr->tm_min)  + ':' 
-				 + std::to_string(timePtr->tm_sec)  + ':' 
-				 + std::to_string(msec.count());
-
-		return currTime;
+		output << std::setfill('0') << std::setw(2) << timePtr->tm_hour << ':'
+			<< timePtr->tm_min << ':'
+			<< timePtr->tm_sec << ':'
+			<< std::setw(3) << msec.count()
+			<< std::setfill(' ') << std::setw(0) << ',';
 	}
 }

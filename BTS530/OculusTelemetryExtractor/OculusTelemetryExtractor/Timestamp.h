@@ -5,11 +5,12 @@
 #include <chrono>
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 
 namespace extractor {
-	std::string getCurrDate();
-	std::string getCurrTime();
+	std::string& getCurrDate();
+	void getCurrTime(std::ofstream&);
 }
 
 #endif

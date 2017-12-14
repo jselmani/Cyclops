@@ -21,7 +21,7 @@ namespace extractor {
 	// being pulled from HMD
 	void AngAccel::writeToFile(std::ostream& output) const {
 		output << aaData.x << "," << aaData.y << "," 
-			<< aaData.z << "," << getCurrTime() << ",";
+			<< aaData.z << ",";
 	}
 
 	std::ostream& operator<<(std::ostream& output, const AngAccel& data) {

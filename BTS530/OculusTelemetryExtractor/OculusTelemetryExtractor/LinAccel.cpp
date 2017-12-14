@@ -21,7 +21,7 @@ namespace extractor {
 	// being pulled from HMD
 	void LinAccel::writeToFile(std::ostream& output) const {
 		output << laData.x << "," << laData.y << "," 
-			<< laData.z << "," << getCurrTime() << ",";
+			<< laData.z << ",";
 	}
 
 	std::ostream& operator<<(std::ostream& output, LinAccel& data) {

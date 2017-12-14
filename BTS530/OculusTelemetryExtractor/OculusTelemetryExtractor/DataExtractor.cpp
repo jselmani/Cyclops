@@ -51,9 +51,9 @@ namespace extractor {
 	}
 
 	// create dynamic file names so data is not overwritten each time a new file is created
-	std::string DataExtractor::createFileName(const std::string& baseName, const std::string& ext) {
+	std::string DataExtractor::createFileName(const std::string& date, const std::string& baseName, const std::string& ext) {
 		std::ostringstream result;
-		result << baseName << "-" << counter++ << ext;
+		result << date << " " << baseName << "-" << counter++ << ext;
 		return result.str();
 	}
 
@@ -61,7 +61,7 @@ namespace extractor {
 	void DataExtractor::openFileForWriting() {
 		serialNum = getSerialNum();
 		file = new std::ofstream();
-		file->open(createFileName(serialNum, ".csv").c_str(), std::ofstream::out);
+		file->open(createFileName(getCurrDate(), serialNum, ".csv").c_str(), std::ofstream::out);
 		canWrite = true;
 	}
 
@@ -114,6 +114,7 @@ namespace extractor {
 					(*it)->setData(hmd, trackState);
 					(*it)->writeToFile(*file);
 				}
+				getCurrTime(*file);
 				*file << std::endl;
 				Sleep(50);
 			}

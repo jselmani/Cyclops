@@ -59,6 +59,8 @@ namespace extractor {
 	}
 
 	void App::printOptionsToConsole() {
+		Sleep(3000);
+		system("cls");
 		std::cout << "Oculus Rift Data Extraction & Simulation Software" << std::endl;
 		std::cout << "=================================================" << std::endl;
 		std::cout << "1 - Initialize Headset" << std::endl;

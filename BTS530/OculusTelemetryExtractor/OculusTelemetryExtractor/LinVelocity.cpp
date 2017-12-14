@@ -21,10 +21,10 @@ namespace extractor {
 	// being pulled from HMD
 	void LinVelocity::writeToFile(std::ostream& output) const {
 		output << lvData.x << "," << lvData.y << "," 
-			<< lvData.z << "," << getCurrTime() << ",";
+			<< lvData.z << ",";
 	}
 
-	std::ostream& operator<<(std::ostream& output, const LinVelocity& data) {
+	std::ofstream& operator<<(std::ostream& output, const LinVelocity& data) {
 		data.writeToFile(output);
 		return output;
 	}
