@@ -12,7 +12,6 @@ namespace extractor {
 		public:
 			App();
 			void run(const char*);
-			void write();
 			int menu();
 			void printOptionsToConsole();
 	};

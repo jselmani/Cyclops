@@ -23,6 +23,8 @@ namespace extractor {
 			virtual void writeToFile(std::ostream&) const = 0;
 			std::string getType() const;
 	};
+
+	std::ostream& operator<<(std::ostream&, const Telemetry*);
 }
 
 #endif

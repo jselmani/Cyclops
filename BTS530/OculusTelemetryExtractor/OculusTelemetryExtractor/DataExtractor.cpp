@@ -7,6 +7,7 @@ namespace extractor {
 		serialNum.clear();
 		counter = 0;
 		HmdPresent = false;
+		file = nullptr;
 	}
 
 	// read in from configuration file (see SampleConfig.csv)
@@ -60,8 +61,7 @@ namespace extractor {
 	// open file with dynamic name
 	void DataExtractor::openFileForWriting() {
 		serialNum = getSerialNum();
-		file = new std::ofstream();
-		file->open(createFileName(serialNum, ".csv").c_str(), std::ofstream::out);
+		file = new std::ofstream(createFileName(serialNum, ".csv").c_str());
 		canWrite = true;
 	}
 
@@ -114,6 +114,7 @@ namespace extractor {
 					(*it)->setData(hmd, trackState);
 					(*it)->writeToFile(*file);
 				}
+				getCurrTime(*file);
 				*file << std::endl;
 				Sleep(50);
 			}

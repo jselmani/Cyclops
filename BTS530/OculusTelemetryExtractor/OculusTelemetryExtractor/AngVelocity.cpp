@@ -15,7 +15,7 @@ namespace extractor {
 	// being pulled from HMD
 	void AngVelocity::writeToFile(std::ostream& output) const {
 		output << avData.x << "," << avData.y << "," 
-			<< avData.z << "," << getCurrTime() << ",";
+			<< avData.z << ",";
 	}
 
 	void AngVelocity::setData(ovrSession& hmd, ovrTrackingState& trackState) {
@@ -24,8 +24,8 @@ namespace extractor {
 			avData = trackState.HeadPose.AngularVelocity;
 	}
 
-	std::ostream& operator<<(std::ostream& output, const AngVelocity& data) {
+	/*std::ostream& operator<<(std::ostream& output, const AngVelocity& data) {
 		data.writeToFile(output);
 		return output;
-	}
+	}*/
 }
