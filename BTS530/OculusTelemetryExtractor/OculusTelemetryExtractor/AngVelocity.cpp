@@ -24,8 +24,8 @@ namespace extractor {
 			avData = trackState.HeadPose.AngularVelocity;
 	}
 
-	std::ostream& operator<<(std::ostream& output, const AngVelocity& data) {
+	/*std::ostream& operator<<(std::ostream& output, const AngVelocity& data) {
 		data.writeToFile(output);
 		return output;
-	}
+	}*/
 }

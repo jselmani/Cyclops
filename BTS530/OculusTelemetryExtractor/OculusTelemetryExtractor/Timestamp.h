@@ -9,7 +9,7 @@
 #include <iomanip>
 
 namespace extractor {
-	std::string& getCurrDate();
+	std::string getCurrDate();
 	void getCurrTime(std::ofstream&);
 }
 

@@ -40,8 +40,8 @@ namespace extractor {
 			<< RadToDegree(roll) << ",";
 	}
 
-	std::ofstream& operator<<(std::ofstream& output, const Orientation& data) {
-		data.writeToFile(output)
+	/*std::ostream& operator<<(std::ostream& output, const Orientation& data) {
+		data.writeToFile(output);
 		return output;
-	}
+	}*/
 }

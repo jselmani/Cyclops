@@ -7,6 +7,7 @@ namespace extractor {
 		serialNum.clear();
 		counter = 0;
 		HmdPresent = false;
+		file = nullptr;
 	}
 
 	// read in from configuration file (see SampleConfig.csv)
@@ -51,17 +52,16 @@ namespace extractor {
 	}
 
 	// create dynamic file names so data is not overwritten each time a new file is created
-	std::string DataExtractor::createFileName(const std::string& date, const std::string& baseName, const std::string& ext) {
+	std::string DataExtractor::createFileName(const std::string& baseName, const std::string& ext) {
 		std::ostringstream result;
-		result << date << " " << baseName << "-" << counter++ << ext;
+		result << baseName << "-" << counter++ << ext;
 		return result.str();
 	}
 
 	// open file with dynamic name
 	void DataExtractor::openFileForWriting() {
 		serialNum = getSerialNum();
-		file = new std::ofstream();
-		file->open(createFileName(getCurrDate(), serialNum, ".csv").c_str(), std::ofstream::out);
+		file = new std::ofstream(createFileName(serialNum, ".csv").c_str());
 		canWrite = true;
 	}
 

@@ -2,7 +2,7 @@
 #include "Timestamp.h"
 
 namespace extractor {
-	std::string& getCurrDate()
+	std::string getCurrDate()
 	{
 		std::string currDate;
 

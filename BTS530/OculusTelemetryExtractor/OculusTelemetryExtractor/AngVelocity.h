@@ -14,8 +14,6 @@ namespace extractor {
 			void setData(ovrSession&, ovrTrackingState&);
 			void writeToFile(std::ostream&) const;
 	};
-
-	std::ostream& operator<<(std::ostream&, const AngVelocity&);
 }
 
 #endif

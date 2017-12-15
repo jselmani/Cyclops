@@ -69,8 +69,4 @@ namespace extractor {
 		std::cout << "4 - Exit Program" << std::endl;
 		std::cout << "> ";
 	}
-
-	void App::write() {
-		dataEx.writeDataToFile();
-	}
 }

@@ -16,4 +16,9 @@ namespace extractor {
 	std::string Telemetry::getType() const {
 		return type; // to be used by derived classes
 	}
+
+	std::ostream& operator<<(std::ostream& output, const Telemetry* data) {
+		data->writeToFile(output);
+		return output;
+	}
 }
