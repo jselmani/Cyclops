@@ -10,7 +10,7 @@
 
 namespace extractor {
 	std::string getCurrDate();
-	void getCurrTime(std::ofstream&);
+	void getCurrTime(std::ostream&);
 }
 
 #endif

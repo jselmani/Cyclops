@@ -23,9 +23,4 @@ namespace extractor {
 		output << lvData.x << "," << lvData.y << "," 
 			<< lvData.z << ",";
 	}
-
-	/*std::ostream& operator<<(std::ostream& output, const LinVelocity& data) {
-		data.writeToFile(output);
-		return output;
-	}*/
 }

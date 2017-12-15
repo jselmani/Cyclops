@@ -23,9 +23,4 @@ namespace extractor {
 		output << aaData.x << "," << aaData.y << "," 
 			<< aaData.z << ",";
 	}
-
-	/*std::ostream& operator<<(std::ostream& output, const AngAccel& data) {
-		data.writeToFile(output);
-		return output;
-	}*/
 }

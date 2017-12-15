@@ -13,7 +13,7 @@ namespace extractor {
 
 		return currDate;
 	}
-	void getCurrTime(std::ofstream& output)
+	void getCurrTime(std::ostream& output)
 	{
 		time_t t = time(NULL);
 		tm* timePtr = localtime(&t);

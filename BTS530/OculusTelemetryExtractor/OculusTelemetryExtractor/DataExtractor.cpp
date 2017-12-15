@@ -7,7 +7,6 @@ namespace extractor {
 		serialNum.clear();
 		counter = 0;
 		HmdPresent = false;
-		file = nullptr;
 	}
 
 	// read in from configuration file (see SampleConfig.csv)
@@ -61,7 +60,7 @@ namespace extractor {
 	// open file with dynamic name
 	void DataExtractor::openFileForWriting() {
 		serialNum = getSerialNum();
-		file = new std::ofstream(createFileName(serialNum, ".csv").c_str());
+		file = std::ofstream(createFileName(serialNum, ".csv").c_str());
 		canWrite = true;
 	}
 
@@ -105,33 +104,35 @@ namespace extractor {
 	}
 
 	void DataExtractor::writeDataToFile() {
-		if (!file->is_open()) {
+		if (!file.is_open()) {
 			throw std::string("The file is corrupted.");
 		}
 		else {
+			guard.lock();
 			while (extractor::canWrite) {
 				for (auto it = data.begin(); it != data.end(); it++) {
 					(*it)->setData(hmd, trackState);
-					(*it)->writeToFile(*file);
+					(*it)->writeToFile(file);
 				}
-				getCurrTime(*file);
-				*file << std::endl;
+				getCurrTime(file);
+				file << std::endl;
 				Sleep(50);
 			}
+			guard.unlock();
 		}
 	}
 
 	void DataExtractor::closeFile() {
-		if (file->is_open()) {
-			file->clear();
-			file->close();
+		if (file.is_open()) {
+			file.clear();
+			file.close();
 		}
 		else
 			std::cout << "A file has not been opened yet.  Begin a simulation to write to a file." << std::endl;
 	}
 
 	std::ofstream& DataExtractor::getFileObject() {
-		return *file;
+		return file;
 	}
 
 	ovrBool DataExtractor::headsetPresent() {
