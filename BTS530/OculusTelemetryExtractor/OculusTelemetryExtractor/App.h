@@ -8,7 +8,7 @@ namespace extractor {
 	class App {
 		private:
 			DataExtractor dataEx;
-			std::thread fileWriter;
+			bool bThreadRunning;
 		public:
 			App();
 			void run(const char*);

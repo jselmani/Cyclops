@@ -4,6 +4,8 @@
 #include <fstream>
 #include <vector>
 #include <mutex>
+#include <stdexcept>
+#include <atomic>
 #include <windows.h>
 #include <ShlObj.h>
 #include <stdlib.h>
@@ -16,7 +18,6 @@
 
 namespace extractor {
 
-	static bool canWrite = false;
 	static std::ofstream file;
 	static std::mutex guard;
 
@@ -39,9 +40,9 @@ namespace extractor {
 			void closeFile();
 			void determineTelType(int);
 			void openFileForWriting();
-			void writeDataToFile();
 			void initializeForSim(const char*); // read in from file and build object
 			void initHeadset();
+			void operator()(bool&);
 	};
 }
 

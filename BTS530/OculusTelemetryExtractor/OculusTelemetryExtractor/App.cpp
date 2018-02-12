@@ -2,7 +2,7 @@
 
 namespace extractor {
 
-	App::App() {}
+	App::App() { bThreadRunning = false; }
 
 	void App::run(const char* in) {
 		int choice = 0;
@@ -15,13 +15,14 @@ namespace extractor {
 			case 2:
 				dataEx.initializeForSim(in);
 				if (dataEx.headsetPresent()) {
-					fileWriter = std::thread{ &DataExtractor::writeDataToFile, dataEx };
-					fileWriter.detach();
+					bThreadRunning = true;
+					std::thread writeFile(std::ref(dataEx), std::ref(bThreadRunning));
+					writeFile.detach();
 				}
 				break;
 			case 3:
-				if (dataEx.getFileObject().is_open()) {
-					canWrite = false;
+				if (dataEx.getFileObject().is_open()){
+					bThreadRunning = false;
 					dataEx.closeFile();
 				}
 				else

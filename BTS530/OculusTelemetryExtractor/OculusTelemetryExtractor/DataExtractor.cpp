@@ -61,7 +61,6 @@ namespace extractor {
 	void DataExtractor::openFileForWriting() {
 		serialNum = getSerialNum();
 		file = std::ofstream(createFileName(serialNum, ".csv").c_str());
-		canWrite = true;
 	}
 
 	// determine telemetry type to push into vector
@@ -103,13 +102,13 @@ namespace extractor {
 		std::cout << "--- HEADSET INITIALIZED ---" << std::endl << std::endl;
 	}
 
-	void DataExtractor::writeDataToFile() {
+	void DataExtractor::operator()(bool &bTerminate) {
 		if (!file.is_open()) {
 			throw std::string("The file is corrupted.");
 		}
 		else {
 			guard.lock();
-			while (extractor::canWrite) {
+			while (bTerminate) {
 				for (auto it = data.begin(); it != data.end(); it++) {
 					(*it)->setData(hmd, trackState);
 					(*it)->writeToFile(file);
