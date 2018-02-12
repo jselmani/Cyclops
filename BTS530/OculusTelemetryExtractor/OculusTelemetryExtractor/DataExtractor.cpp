@@ -7,7 +7,6 @@ namespace extractor {
 		serialNum.clear();
 		counter = 0;
 		HmdPresent = false;
-		file = nullptr;
 	}
 
 	// read in from configuration file (see SampleConfig.csv)
@@ -61,8 +60,7 @@ namespace extractor {
 	// open file with dynamic name
 	void DataExtractor::openFileForWriting() {
 		serialNum = getSerialNum();
-		file = new std::ofstream(createFileName(serialNum, ".csv").c_str());
-		canWrite = true;
+		file = std::ofstream(createFileName(serialNum, ".csv").c_str());
 	}
 
 	// determine telemetry type to push into vector
@@ -104,34 +102,36 @@ namespace extractor {
 		std::cout << "--- HEADSET INITIALIZED ---" << std::endl << std::endl;
 	}
 
-	void DataExtractor::writeDataToFile() {
-		if (!file->is_open()) {
+	void DataExtractor::operator()(bool &bTerminate) {
+		if (!file.is_open()) {
 			throw std::string("The file is corrupted.");
 		}
 		else {
-			while (extractor::canWrite) {
+			guard.lock();
+			while (bTerminate) {
 				for (auto it = data.begin(); it != data.end(); it++) {
 					(*it)->setData(hmd, trackState);
-					(*it)->writeToFile(*file);
+					(*it)->writeToFile(file);
 				}
-				getCurrTime(*file);
-				*file << std::endl;
+				getCurrTime(file);
+				file << std::endl;
 				Sleep(50);
 			}
+			guard.unlock();
 		}
 	}
 
 	void DataExtractor::closeFile() {
-		if (file->is_open()) {
-			file->clear();
-			file->close();
+		if (file.is_open()) {
+			file.clear();
+			file.close();
 		}
 		else
 			std::cout << "A file has not been opened yet.  Begin a simulation to write to a file." << std::endl;
 	}
 
 	std::ofstream& DataExtractor::getFileObject() {
-		return *file;
+		return file;
 	}
 
 	ovrBool DataExtractor::headsetPresent() {

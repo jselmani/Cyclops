@@ -3,6 +3,9 @@
 
 #include <fstream>
 #include <vector>
+#include <mutex>
+#include <stdexcept>
+#include <atomic>
 #include <windows.h>
 #include <ShlObj.h>
 #include <stdlib.h>
@@ -13,17 +16,10 @@
 #include "LinVelocity.h"
 #include "Orientation.h"
 
-/*
-	TODO:
-	- delete memory in DataExtractor::vector data by writing function
-	- delete file memory
-	- finish writing destructor
-	- add date to file name
-	- DEBUG/TEST WITH OCULUS
-*/
 namespace extractor {
 
-	static bool canWrite = false;
+	static std::ofstream file;
+	static std::mutex guard;
 
 	class DataExtractor {
 		private:
@@ -31,7 +27,6 @@ namespace extractor {
 			ovrGraphicsLuid luid;
 			ovrTrackingState trackState;
 			ovrBool HmdPresent;
-			std::ofstream* file;
 			std::vector<Telemetry*> data;
 			std::string serialNum;
 			int counter; // used to change file name
@@ -45,9 +40,9 @@ namespace extractor {
 			void closeFile();
 			void determineTelType(int);
 			void openFileForWriting();
-			void writeDataToFile();
 			void initializeForSim(const char*); // read in from file and build object
 			void initHeadset();
+			void operator()(bool&);
 	};
 }
 
