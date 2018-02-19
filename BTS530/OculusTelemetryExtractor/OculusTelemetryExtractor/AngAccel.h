@@ -11,6 +11,7 @@ namespace extractor {
 		public:
 			AngAccel();
 			AngAccel(const std::string&);
+			~AngAccel();
 			void setData(ovrSession&, ovrTrackingState&);
 			void writeToFile(std::ostream&) const;
 	};

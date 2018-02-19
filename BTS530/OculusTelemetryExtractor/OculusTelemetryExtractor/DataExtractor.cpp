@@ -5,8 +5,8 @@ namespace extractor {
 	//initialize hmd and other member variables
 	DataExtractor::DataExtractor() {
 		serialNum.clear();
-		counter = 0;
 		HmdPresent = false;
+		file = nullptr;
 	}
 
 	// read in from configuration file (see SampleConfig.csv)
@@ -37,10 +37,10 @@ namespace extractor {
 	}
 
 	// Destructor
-	// TODO: clean up all values, not just HMD
 	DataExtractor::~DataExtractor() {
 		ovr_Destroy(hmd);
 		ovr_Shutdown();
+		data.clear();
 	}
 
 	// returns serial number of headset to be used as filename
@@ -53,14 +53,16 @@ namespace extractor {
 	// create dynamic file names so data is not overwritten each time a new file is created
 	std::string DataExtractor::createFileName(const std::string& baseName, const std::string& ext) {
 		std::ostringstream result;
-		result << baseName << "-" << counter++ << ext;
+		std::string date = getCurrDate();
+		std::string time = getCurrTime();
+		result << date << "_" << time << "-" << baseName << ext;
 		return result.str();
 	}
 
 	// open file with dynamic name
 	void DataExtractor::openFileForWriting() {
 		serialNum = getSerialNum();
-		file = std::ofstream(createFileName(serialNum, ".csv").c_str());
+		file = new std::ofstream(createFileName(serialNum, ".csv").c_str());
 	}
 
 	// determine telemetry type to push into vector
@@ -68,19 +70,19 @@ namespace extractor {
 	void DataExtractor::determineTelType(int telType) {
 		switch (telType) {
 		case 1:
-			data.push_back(new AngAccel("Angular Acceleration"));
+			data.push_back(std::unique_ptr<Telemetry>(new AngAccel("Angular Acceleration")));
 			break;
 		case 2:
-			data.push_back(new AngVelocity("Angular Velocity"));
+			data.push_back(std::unique_ptr<Telemetry>(new AngVelocity("Angular Velocity")));
 			break;
 		case 3:
-			data.push_back(new LinAccel("Linear Acceleration"));
+			data.push_back(std::unique_ptr<Telemetry>(new LinAccel("Linear Acceleration")));
 			break;
 		case 4:
-			data.push_back(new LinVelocity("Linear Velocity"));
+			data.push_back(std::unique_ptr<Telemetry>(new LinVelocity("Linear Velocity")));
 			break;
 		case 5:
-			data.push_back(new Orientation("Orientation"));
+			data.push_back(std::unique_ptr<Telemetry>(new Orientation("Orientation")));
 			break;
 		default:
 			throw new std::string("The configuration file has been corrupted.");
@@ -102,36 +104,39 @@ namespace extractor {
 		std::cout << "--- HEADSET INITIALIZED ---" << std::endl << std::endl;
 	}
 
-	void DataExtractor::operator()(bool &bTerminate) {
-		if (!file.is_open()) {
-			throw std::string("The file is corrupted.");
-		}
-		else {
-			guard.lock();
-			while (bTerminate) {
-				for (auto it = data.begin(); it != data.end(); it++) {
-					(*it)->setData(hmd, trackState);
-					(*it)->writeToFile(file);
-				}
-				getCurrTime(file);
-				file << std::endl;
-				Sleep(50);
+	void DataExtractor::operator()(bool &bTerminate, int &lineCount) {
+		guard.lock();
+		while (bTerminate) {
+			*file << getCurrTime() << ",";
+			for (auto it = data.begin(); it != data.end(); it++) {
+				(*it)->setData(hmd, trackState);
+				(*it)->writeToFile(*file);
 			}
-			guard.unlock();
+			*file << std::endl;
+			lineCount++;
+			if (lineCount == 10000) {
+				closeFile();
+				openFileForWriting();
+				lineCount = 0;
+			}
+			Sleep(75);
 		}
+		guard.unlock();
 	}
 
 	void DataExtractor::closeFile() {
-		if (file.is_open()) {
-			file.clear();
-			file.close();
+		if (file->is_open()) {
+			file->clear();
+			file->close();
+			delete file;
+			file = nullptr;
 		}
 		else
 			std::cout << "A file has not been opened yet.  Begin a simulation to write to a file." << std::endl;
 	}
 
 	std::ofstream& DataExtractor::getFileObject() {
-		return file;
+		return *file;
 	}
 
 	ovrBool DataExtractor::headsetPresent() {

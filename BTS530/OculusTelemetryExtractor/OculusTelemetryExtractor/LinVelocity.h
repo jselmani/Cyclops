@@ -11,6 +11,7 @@ namespace extractor {
 		public:
 			LinVelocity();
 			LinVelocity(const std::string&);
+			~LinVelocity();
 			void setData(ovrSession&, ovrTrackingState&);
 			void writeToFile(std::ostream&) const;
 	};

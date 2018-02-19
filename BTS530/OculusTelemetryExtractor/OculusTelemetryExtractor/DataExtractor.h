@@ -4,12 +4,10 @@
 #include <fstream>
 #include <vector>
 #include <mutex>
-#include <stdexcept>
-#include <atomic>
+#include <memory>
 #include <windows.h>
 #include <ShlObj.h>
 #include <stdlib.h>
-#include <sstream>
 #include "AngAccel.h"
 #include "AngVelocity.h"
 #include "LinAccel.h"
@@ -18,7 +16,6 @@
 
 namespace extractor {
 
-	static std::ofstream file;
 	static std::mutex guard;
 
 	class DataExtractor {
@@ -27,9 +24,9 @@ namespace extractor {
 			ovrGraphicsLuid luid;
 			ovrTrackingState trackState;
 			ovrBool HmdPresent;
-			std::vector<Telemetry*> data;
+			std::ofstream* file;
+			std::vector<std::unique_ptr<Telemetry>> data;
 			std::string serialNum;
-			int counter; // used to change file name
 		public:
 			DataExtractor();
 			~DataExtractor();
@@ -42,7 +39,7 @@ namespace extractor {
 			void openFileForWriting();
 			void initializeForSim(const char*); // read in from file and build object
 			void initHeadset();
-			void operator()(bool&);
+			void operator()(bool&, int&);
 	};
 }
 

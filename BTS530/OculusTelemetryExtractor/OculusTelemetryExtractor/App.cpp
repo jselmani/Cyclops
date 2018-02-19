@@ -2,7 +2,10 @@
 
 namespace extractor {
 
-	App::App() { bThreadRunning = false; }
+	App::App() { 
+		bThreadRunning = false; 
+		lineCount = 0;
+	}
 
 	void App::run(const char* in) {
 		int choice = 0;
@@ -16,7 +19,7 @@ namespace extractor {
 				dataEx.initializeForSim(in);
 				if (dataEx.headsetPresent()) {
 					bThreadRunning = true;
-					std::thread writeFile(std::ref(dataEx), std::ref(bThreadRunning));
+					std::thread writeFile(std::ref(dataEx), std::ref(bThreadRunning), std::ref(lineCount));
 					writeFile.detach();
 				}
 				break;

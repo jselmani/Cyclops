@@ -8,10 +8,11 @@ namespace extractor {
 		yaw = 0;
 		pitch = 0;
 		roll = 0;
-		getType().clear();
 	}
 
 	Orientation::Orientation(const std::string& str) : Telemetry(str) {}
+
+	Orientation::~Orientation() {}
 
 	void Orientation::initOrientationValues(ovrPosef& p) {
 		p.Orientation.w = 0;

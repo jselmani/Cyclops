@@ -15,6 +15,7 @@ namespace extractor {
 		public:
 			Orientation();
 			Orientation(const std::string&);
+			~Orientation();
 			void initOrientationValues(ovrPosef&);
 			void initPositionValues(ovrPosef&);
 			void setData(ovrSession&, ovrTrackingState&);

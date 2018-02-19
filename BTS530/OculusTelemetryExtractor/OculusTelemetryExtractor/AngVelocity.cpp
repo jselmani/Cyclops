@@ -6,10 +6,11 @@ namespace extractor {
 		avData.x = 0;
 		avData.y = 0;
 		avData.z = 0;
-		getType().clear();
 	}
 
 	AngVelocity::AngVelocity(const std::string& str) : Telemetry(str) {}
+
+	AngVelocity::~AngVelocity() {}
 
 	// TODO: Write Date & Time stamp for each piece of telemetry
 	// being pulled from HMD

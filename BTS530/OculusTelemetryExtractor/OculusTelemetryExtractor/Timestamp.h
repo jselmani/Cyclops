@@ -7,10 +7,11 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <sstream>
 
 namespace extractor {
 	std::string getCurrDate();
-	void getCurrTime(std::ostream&);
+	std::string getCurrTime();
 }
 
 #endif
