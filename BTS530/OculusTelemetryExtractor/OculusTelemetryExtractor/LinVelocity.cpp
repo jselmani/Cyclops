@@ -6,10 +6,11 @@ namespace extractor {
 		lvData.x = 0;
 		lvData.y = 0;
 		lvData.z = 0;
-		getType().clear();
 	}
 
 	LinVelocity::LinVelocity(const std::string& str) : Telemetry(str) {}
+
+	LinVelocity::~LinVelocity() {}
 
 	void LinVelocity::setData(ovrSession& hmd, ovrTrackingState& trackState) {
 		trackState = ovr_GetTrackingState(hmd, ovr_GetTimeInSeconds() + 0.005, ovrTrue);

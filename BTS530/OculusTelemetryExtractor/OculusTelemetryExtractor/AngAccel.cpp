@@ -6,10 +6,11 @@ namespace extractor {
 		aaData.x = 0;
 		aaData.y = 0;
 		aaData.z = 0;
-		getType().clear();
 	}
 
 	AngAccel::AngAccel(const std::string& str) : Telemetry(str) {}
+
+	AngAccel::~AngAccel() {}
 
 	void AngAccel::setData(ovrSession& hmd, ovrTrackingState& trackState) {
 		trackState = ovr_GetTrackingState(hmd, ovr_GetTimeInSeconds() + 0.005, ovrTrue);

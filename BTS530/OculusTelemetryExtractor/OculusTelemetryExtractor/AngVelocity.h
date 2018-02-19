@@ -11,6 +11,7 @@ namespace extractor {
 		public:
 			AngVelocity();
 			AngVelocity(const std::string& str);
+			~AngVelocity();
 			void setData(ovrSession&, ovrTrackingState&);
 			void writeToFile(std::ostream&) const;
 	};

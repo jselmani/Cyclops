@@ -6,10 +6,11 @@ namespace extractor {
 		laData.x = 0;
 		laData.y = 0;
 		laData.z = 0;
-		getType().clear();
 	}
 
 	LinAccel::LinAccel(const std::string& str) : Telemetry(str) {}
+
+	LinAccel::~LinAccel() {}
 
 	void LinAccel::setData(ovrSession& hmd, ovrTrackingState& trackState) {
 		trackState = ovr_GetTrackingState(hmd, ovr_GetTimeInSeconds() + 0.005, ovrTrue);
