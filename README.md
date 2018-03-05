@@ -16,35 +16,52 @@ Dr. Elliott Coleshill is a Professor and Industry Relations Coordinator at Senec
 ### Business Statement
 
 Currently, pilots require a certain number of inflight hours before they are able to receive their piloting license. This is a very costly procedure since fuel is very expensive and could be dangerous since an untrained pilot would be in control of the aircraft. Dr. Coleshill has requested our team to learn the capabilities of a Virtual Reality Headset, the Oculus Rift, and create a project that allows him to learn and understand the exact capabilities of the Oculus Rift with ease. He is interested in administering a safe environment for both Professors and Students, with an end goal of providing the same experience to the pilot "on the ground" that they would receive in the cockpit "in the air". This safe environment would decrease the dangers and costs that are involved with training a new pilot.  This environment will be rendered as a Scene (what is displayed to the user via the Oculus Rift) to engage the pilot in a cockpit setting, but in a cost-effective environment.
-Virtual reality technology is relatively new and our group has never worked with the technology before.  Therefore, we will be maintaining a relatively lower level of complexity in order to ensure project completion.  Our task is to generate a series of components to meet the requirements of the research project.  These components consist of customized scenes (the VR and desktop environments) such as the user interface and the cockpit (preferably a Static Cockpit) which would be designed and implemented using Unity's Game Engine, a Database to store data (User, Sensor Data, Timestamp), and software that will extract accelerometer and gyroscope data from the VR Headset and its peripheral device.
+Virtual reality technology is relatively new and our group has never worked with the technology before.  Therefore, we will be maintaining a relatively lower level of complexity in order to ensure project completion.  Our task is to generate a series of components to meet the requirements of the research project.  These components consist of customized scenes (the VR and desktop environments) such as the user interface and the cockpit which would be designed and implemented using Unity's Game Engine, a CSV file to store data (Headset Serial Number, Sensor Data, Timestamp), and software that will extract accelerometer and gyroscope data from the VR Headset and its peripheral device.
 
 In order to aid Dr. Coleshill in his research, he requires technology that can process sensor information in real-time.  By doing so, he will be able to understand what and where the User is looking at, and how often.  With vast amounts of data being stored, it can be extracted for review where Dr. Coleshill can establish patterns in the flight and analyze the data accordingly on a per user basis.
 
 To cut down on development time, each group member will be tasked on working on a particular portion of the project to lighten the workload.  Should any group members become overwhelmed, it is agreed upon that aid will be provided from group members and our client as well.  Our project has several requirements, and are as follows.
+
+### Overall Goals and Milestones
+The project must accomplish the following milestones:
+
+1. The project must demonstrate the ability to extract telemetry data from the Oculus Rift headset while running a flight simulation. (COMPLETED)
+	* The Oculus C++ SDK must be utilized in order to extract the data from the headset and store it into a .CSV file.
+2. A Desktop UI must be functional. (COMPLETED)
+	* The Desktop UI should let Users seamlessly setup the Oculus Rift Headset without complications.
+	* The Desktop UI should allow users to start and stop the extraction of data with a click of a button.
+	* The Desktop UI should also allow users to configure the C++ application by presenting check boxes that let's users select specific telemetry data to be extracted.
+3. A C++ application should extract the telemetry data from the headset and store it into a .CSV file that is located in the directory specified by the User in the Desktop UI. (COMPLETED)
+4. The unity scene should present a 3D cockpit with the following objects that Users can interact with: (IN PROGRESS)
+	* A thruster object that will accelerate/de-accelerate the speed of the spaceship in the x, y, and z planes.
+	* A joystick that can rotate the spaceship in the x and z planes.
+5. The Oculus Rift device should function within the Unity scene and Users should be able to interact with the thruster and joystick using the Oculus peripherals (Touch Controllers). (IN PROGRESS)
+6. Final documentation will be written to describe how to setup the environment (including where to place the SDK) and how to use the application for further use. (IN PROGRESS)
 
 ### Overall System Requirements
 The project must solve the problem that our team has been tasked with and must meet certain requirements in order to be deemed successful.
 
 #### General Requirements
 * The project will only be accessible using an Oculus Rift headset and a capable-GPU personal computer (VR Ready).
-* The database will only be accessible by an Admin.
-* There will only be one Admin.
+* A Desktop UI that allows users to setup the Oculus Rift and configure the C++ application for the storage of specific headset telemetry data.
+* The project will store telemetry data in .CSV files
 
 #### The Interface Requirements
-* A UI must be present, user-friendly, and intuitive. It can be met in any of the following ways:
-	* Via a Monitor or Screen,
-	* Via the VR Headset
-* The UI must only accept (authenticate) users that have been created by an Admin, including the Admin.
-* When a User attempts to log in, and fails, the System must let the User know why they cannot begin their session.
+* A UI must be present, user-friendly, and intuitive. It can be met in the following way:
+	* Via a Monitor
 
-#### The Database Requirements
-* A Database will be designed and built in order to store and retrieve data, following the rules below:
-	* The user passwords will be hashed,
-	* The data will only be accessible by an Admin.
-	* The Admin login credentials will be basic and unchangeable for simplicity.
-	* The database will consist of multiple tables – each table will hold the data of a scene that has been run by a user.
-	* Data from the headset technology and its peripherals will be written to a .CSV file and stored into a file system
-		* The file will be referenced by the database for extraction, limiting database resources.
+#### The data storage Requirements
+* Data from the headset technology and its peripherals will be written to a .CSV and stored into a folder structure.
+* A .CSV file will be created for the following two reasons:
+	* Configuration file - pre-selects specific data that will get stored into the telemetry file
+	* Telemetry data - Can contain angular/linear velocity, rotation, etc.
+* A CSV file will be used to store and retrieve data, following the rules below:
+	* Data from the headset technology and its peripherals will be written in a table format.
+	* Each table will hold data of a scene that has been run by a user.
+* The folder structure for the storage of the CSV files will be created in the following format:
+	* Date and Headset serial number folder -> .CSV file
+* The folder will be created once per day per use.
+* A .CSV file will be created for each session of the flight simulation.
 
 #### The Scene Requirements
 * The scene will be generated by the Unity Game Engine.
@@ -56,56 +73,44 @@ The project must solve the problem that our team has been tasked with and must m
 * The client has requested that the extracted data is in real-time. We have two methods to bring this to fruition.
 	* The data extracted will be time stamped in order for the admin to be able to analyze the data efficiently
 	* The data will be written to a .CSV file where the data will be extracted at intervals between 50-200 milliseconds
-	* When the data extraction is successful, if the project is near completion and time permits we may attempt to give a visual representation of the data within:
-		* The Oculus Rift display and/or
-		* The desktop environment - this would only be accessible to an admin so they may analyze the data as it is being written.
+	* During the extraction of the headset data a visual representation of the data will displayed in the Desktop UI in a table format.
 * The Oculus Rift Headset and its peripheral technology uses C++ in it's SDK.
 	* The software to extract the accelerometer and gyroscope data must be written in C++.
 
 #### Logical Requirements
-* Only users that are authenticated by an Admin will be allowed access to the Desktop UI or the VR Headset’s UI.
-	* A login section will be available on the Desktop UI
-* Depending on the type of login (regular user or admin), the UI will be slightly different.
-	* Once an admin is logged in they will be able to:
-		* Register a new user.
-	* A regular user would be able to:
-		* Chose the type of scene they would like to use, in the VR Headset UI and/or in the Desktop UI.
-		* Once a scene is chosen, data will be written to the database based on the movement of the VR Headset and its peripheral device.
-		* For a user to end the scene, there should be a button dedicated on the peripheral device that the user may press (so the transmission of data will be cutoff) or a button will be implemented within the UI that has the same effect.
-	* In order to completely end the session, the admin/user must logoff.
+* A user would be able to:
+	* Chose the type of scene they would like to use in the Desktop UI.
+	* Once a scene is chosen, data will be written to the .CSV file based on the movement of the VR Headset and its peripheral device.
+	* For a user to end the scene, there should be a button dedicated on the peripheral device that the user may press (so the transmission of data will be cutoff) or a button will be implemented within the UI that has the same effect.
 
 
 ## Technical Overview
 
-This project consists of several components including the **front-end interfaces** for the students and administrator to access and perform the use cases, a **back-end (database)** component to store the extracted data from the Oculus Rift and its peripheral technology.  The **hosting** of the database will be local to the administrators machine.
+This project consists of several components including the **front-end interfaces** for the user to access and perform the use cases, a **data storage** component to store the extracted data from the Oculus Rift and its peripheral technology.
 
 In this technical overview, we will list these components and their requirements, and discuss the technologies and their uses in order to run the program smoothly.
 
 ### Components and Requirements
 
 * Minimum Desktop/Laptop Hardware Requirements:
-	* Graphics Card – NVIDIA GTX 960 / AMD Radeon R9 290 or equivalent 
+	* Graphics Card – NVIDIA GTX 960 / AMD Radeon R9 290 or equivalent
 	* CPU – Intel i3-6100 / AMD Ryzen 3 1200, FX4350 or equivalent
 	* RAM – 8GB or greater
 	* HDMI – version 1.3
 	* USB 3.0 – 1 Port
 	* USB 2.0 – 2 Ports
+	* 15 GB of storage space
 * Oculus Hardware Requirements
-	* Oculs Rift Headset
+	* Oculus Rift Headset
 	* Oculus Touch (Touch Controllers) – pair of handheld motion controllers
 	* Constellation – the positional tracking system which comes with the headset and the Oculus touch
-		* Tracks the position of the user's head as well as the position of the peripheral device (Touch Controller)
+		* Tracks the position of the user's head with the HMD attached.
 * Software Requirements:
 	* Oculus Home – base software of the rift which starts VR applications
 	* Oculus PC SDK - written in C++
 	* Oculus Runtime/Drivers - the runtime and drivers must be installed in order for the rift to function.
 	* Operating System – Windows 8.1 or newer
 	* Unity Game Engine - Unity is primarily used to develop video games and simulations, written in C#.
-* Database Requirements:
-	* MongoDB (NoSQL)
-		* MongoDB must be installed on the local machine and will be configured using the Unity MongoDB driver for C#.
-		* A C++ utility must be written to retreive the data from the Oculus Rift and store into a ".csv" file which will
-		later be referenced by the Database.
 
 ### Technologies
 
@@ -131,23 +136,19 @@ Discussing virtual reality, we have mentioned several times that we will be usin
 
 For the reasons outlined above, our front-end will be using rather simple technologies to build a relatively complex solution for our client.
 
-#### Back-End/Database System
+#### Data Storage
 
-The back-end of the project will consist of a C++ console application that will extract the sensor data from the Oculus Rift and its peripherals, as well as the MongoDB database that will be hosted locally in the administrators machine.  We have chosen to use C++ and MongoDB for the following reasons:
+Using the Oculus SDK, the project will export the telemetry data from the Oculus Rift and its peripherals into a .CSV file for each session.
+We have chosen to use C++ and .CSV file format for the following reasons:
 * Oculus SDK
   * The SDK is written in C++ and it is imperative that we use C++ in order to extract the sensory data.
   * The C++ application is lightweight and will be running in the background once the user has launched the scene.
     * This will occur using the Process object in the Unity game engine.
-* Lightweight Database Engine
-  * The MongoDB database engine is lightweight and easy to integrate with C#, utilizing drivers to allow Unity integration.
-  * Data structuring uses JSON/BSON notation, making it a simpler alternative to MySQL or SQLite
-  * Querying in MongoDB uses simpler syntax with less restrictions, making it more error-free than the alternatives.
+* .CSV files
+	* Able to create tables to easily organize telemetry data
+	* Compatible across multiple platforms.
 
 # System Components
-
-### User Account Management
-
-This component will only be accessible by the Administrator who will be able to Create, Read, Update, and Delete user information.  For login purposes, the Admin will provide each User with their login credentials where this component will be used to authenticate the User.
 
 ### Oculus Rift SDK/API
 
@@ -157,9 +158,9 @@ The backbone of the entire project, this component will be utilized to extract t
 
 The game engine will be used to generate the Scene for the User.  It will be used by the development team to build and create the environment that the User will immerse themselves in using the Oculus Rift headset.
 
-### MongoDB Database
+### Data Storage
 
-Used to store the User data that will be created by the Admin, complete with references to the .CSV files that will be stored in the file system locally on the machine after completion of the Users session.
+Store telemetry data into .CSV files, which will be stored in the file system locally on the machine after completion of each session for the flight simulation.
 
 # Use Cases
 
