@@ -31,7 +31,7 @@ The project must accomplish the following milestones:
 	* The Desktop UI should let Users seamlessly setup the Oculus Rift Headset without complications.
 	* The Desktop UI should allow users to start and stop the extraction of data with a click of a button.
 	* The Desktop UI should also allow users to configure the C++ application by presenting check boxes that let's users select specific telemetry data to be extracted.
-3. A C++ application should extract the telemetry data from the headset and store it into a .CSV file that is located in the directory specified by the User in the Desktop UI. (COMPLETED)
+3. Telemetry data from the headset will be stored in a `.CSV` file that is located in the directory specified by the User in the Desktop UI. (COMPLETED)
 4. The unity scene should present a 3D cockpit with the following objects that Users can interact with: (IN PROGRESS)
 	* A thruster object that will accelerate/de-accelerate the speed of the spaceship in the x, y, and z planes.
 	* A joystick that can rotate the spaceship in the x and z planes.
