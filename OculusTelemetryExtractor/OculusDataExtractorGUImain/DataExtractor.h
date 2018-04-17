@@ -4,15 +4,6 @@
 #include "stdafx.h"
 #include "OutputDialog.h"
 
-/*
-	TODO:
-	- delete memory in DataExtractor::vector data by writing function
-	- delete file memory
-	- finish writing destructor
-	- add date to file name
-	- DEBUG/TEST WITH OCULUS
-*/
-
 static std::mutex guard;
 
 class DataExtractor {
