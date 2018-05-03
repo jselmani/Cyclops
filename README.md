@@ -51,3 +51,6 @@ _NOTE: PERFORM STEP 1 ONLY ONCE_
 If there are new features or issues that you find in the application, please open an issue in the repository so it can be addressed. Pull requests are also welcome!
 
 More information about setting up your environment for more development will be added shortly!
+
+### Special Thanks
+I would like to thank the other core contributor of this project, Joseph Pildush, for his commitment to the project.  With so much other development projects in our midst, this one always seemed to take the backburner, but we got it done.  Thank you.
