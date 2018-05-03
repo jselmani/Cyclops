@@ -52,5 +52,9 @@ If there are new features or issues that you find in the application, please ope
 
 More information about setting up your environment for more development will be added shortly!
 
+### Oculus License
+
+The Oculus SDK has not by any means been created, developed, ideated, etc. by the development team of this project.  You may find the Oculus SDK License [here](https://github.com/jselmani/cyclops/blob/updateApp/lib/OculusSDK/LICENSE.txt).
+
 ### Special Thanks
 I would like to thank the other core contributor of this project, Joseph Pildush, for his commitment to the project.  With so much other development projects in our midst, this one always seemed to take the backburner, but we got it done.  Thank you.
