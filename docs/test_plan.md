@@ -1,7 +1,7 @@
 # Test Plan
 ## Extracting Data
 
-Thee following tests will be conducted in order to test the extraction of data from the Oculus Rift headset. Please see the wiki page [here](https://github.com/SenecaCollegeBTSProjects/Group_14/wiki/Test-Cases) to consult with different test cases.
+Thee following tests will be conducted in order to test the extraction of data from the Oculus Rift headset. Please see the wiki page [here](https://github.com/jselmani/cyclops/wiki/Test-Cases) to consult with different test cases.
 
 | Number | Action | Output |
 |--------|--------|--------|
