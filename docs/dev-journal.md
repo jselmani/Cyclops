@@ -1,5 +1,3 @@
-### Team #: 14
-
 ### Brief Overview of System
 A desktop application which utilizes the Oculus Rift hardware and Oculus Rift SDK with a custom-designed GUI that extracts telemetry data
 and writes to  `.csv` files to be used for analysis and research purposes.  
@@ -24,8 +22,7 @@ Originally, the application was intended to have the features listed below.
  * The ability to start the Unity VR simulation upon initializing the headset
  * Encapsulating all functionality into a DLL to ensure portability of the application
 
-The above functionality was ignored as there was not enough time to learn the Oculus SDK, Hardware Integration, Unity Game Engine, and the MFC framework (GUI) within the duration of the project.
-Also our client, Dr. Elliott Coleshill, emphasized that the above functionality was not required for his research.  Therefore, the final product resulted in the following implementation:
+The final product resulted in the following implementation:
  * C++ Extractor Code that utilizes the Oculus SDK
  * MFC Graphical User Interface that allows users to interact with the Extractor Code
  * Local storage of Telemetry data and Configuration files
@@ -44,10 +41,7 @@ One of our biggest fears are the Oculus Home Play Store's heavy guidelines for d
 
 ### Learning
 #### Business and Functions of Use
-Being a research based project, our project would support VR researchers into understanding how to make better simulations that are comfortable for their users as well as learn new ways to utilize the capabilities of the hardware.  Working with our client (Dr. Coleshill) gave us insight into how the understanding of a technology is just as important in writing code and documentation that supports it.  Without understanding his needs, our group would not have known where to start this project.
+Being a research based project, our project would support VR researchers into understanding how to make better simulations that are comfortable for their users as well as learn new ways to utilize the capabilities of the hardware. 
 
 #### Technologies We Used
-The most critical part of our project lied in the technology we used.  Working with third party software, like the Oculus SDK, was difficult to understand at first.  With thousands of lines of code and different components to be used, the initial task of learning how to integrate the SDK into our project was daunting.  Reading code and documentation was an excellent experience as that is what afforded our team the opportunity to accomplish our challenge.  Essentially, trial and error was the only way we could make this project work.  We also had to utilize the MFC framework to design our graphical user interface that migrated the backend code of our application with user-friendly visuals and functionality.  Integrating the backend with the frontend in C++ is not easy and this was a very proud achievement for our team.  Lastly, building and generating a VR experience to test our software with was enlightening.  It was an opportunity that was a lot of fun where we worked with 3D objects, Level Design, Audio Integration, Scale, and both free and paid assets.  Using the Unity Game Engine was a steep learning curve but the final product for this project was a beautiful simulation for others to enjoy.
-
-#### The Overall Experience
-As with all group work, our team had its fair share of disagreements and miscommunication; a precursor to what life is like in industry.  However, we overcame our challenges as a team by successfully talking things through (sometimes arguing) and compromising with one another's ideas.  Running and managing a product from start to finish is a difficult task as so much more than just writing code is necessary.  We must establish requirements, discover the main priorities of our client, determine the appropriate features to be deployed, and most importantly (and most difficult), is having to delete features that do not fit the scope of our project.  Software Development is not an overnight process and this project and experience allowed us to realize the process that is undertaken to go from concept to deployable product.
+The most critical part of our project lied in the technology we used.  Working with third party software, like the Oculus SDK, was difficult to understand at first.  With thousands of lines of code and different components to be used, the initial task of learning how to integrate the SDK into our project was daunting.  Reading code and documentation was an excellent experience as that is what afforded our team the opportunity to accomplish our challenge.  Essentially, trial and error was the only way we could make this project work.  We also had to utilize the MFC framework to design our graphical user interface that migrated the backend code of our application with user-friendly visuals and functionality.
